@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Dimensions, SafeAreaView, Platform } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import DisplayWord from '../Multiple/DisplayWord';
 import AnimatedButton from './AnimatedButton';
 import DisplayNumber from '../Multiple/DisplayNumber';
 import ButtonComponent from './ButtonComponent';
@@ -75,20 +74,12 @@ const InsideView = ({ toggleSlideMain, toggleSlideGame, toggleSlideList, toggleS
     <SafeAreaView style={{  borderTopLeftRadius: screenWidth * 0.06,
       borderTopRightRadius: screenWidth * 0.06,  width: '100%', height: '100%'}}>
 
-     
-         
       <LinearGradient
-        colors={['#FFFDD0','#ddfed9','#ddfed9',   ]}
+        colors={['#FFFDD0','#ddfed9','#ddfed9', ]}
         style={styles.greenSection}
       >
-       
-       
-    
-
 
         <View style={{ width: screenWidth, flex: 3, justifyContent: 'space-evenly', alignItems: 'center',}}>
-
-
 
         {Platform.isPad ? (
           <View style={{ width: screenWidth, height: screenWidth * 0.12, justifyContent: 'center', alignItems: 'center' }}>
@@ -100,33 +91,31 @@ const InsideView = ({ toggleSlideMain, toggleSlideGame, toggleSlideList, toggleS
           </View>
         )}
 
-
 <ButtonComponent mainHandlePress={mainHandlePress} />
 
 
 {Platform.isPad ? (
-          <View style={{ width: screenWidth * 0.4, height: screenWidth * 0.04 }}>
-            <DisplayWord Word={'games played ' + gamesPlayed.toString()} sizeW={0.4} sizeH={0.04} left={0} />
+          <View style={{ width: screenWidth * 0.4, height: screenWidth * 0.04,justifyContent: 'center' }}>
+            <Text style={{color: 'black',fontSize: screenWidth * 0.03, alignSelf: 'center',
+fontFamily: 'Chalkboard SE'}}>{'GAMES PLAYED ' + gamesPlayed.toString()}</Text>
           </View>
         ) : (
-          <View style={{ width: screenWidth * 0.8, height: screenWidth * 0.06 }}>
-            <DisplayWord Word={'games played ' + gamesPlayed.toString()} sizeW={0.8} sizeH={0.06} left={0} />
+          <View style={{ width: screenWidth * 0.8, height: screenWidth * 0.07, justifyContent: 'center',}}>
+            <Text style={{color: 'black',fontSize: screenWidth * 0.07, alignSelf: 'center',marginTop: -screenWidth * 0.01,
+fontFamily: 'Chalkboard SE'}}>{'GAMES PLAYED ' + gamesPlayed.toString()}</Text>
           </View>
         )}
 
-
-
         </View>
-
 
         <View style={{width: screenWidth * 1.01, flex: 2, backgroundColor: 'black',
         borderTopLeftRadius: screenWidth * 0.06,borderTopRightRadius: screenWidth * 0.06, bottom: -screenWidth * 0.005, justifyContent: 'space-evenly', alignItems: 'center'}}>
 
 
 
-<AnimatedButton onPress={handlePressList} text="list page" />
-        <AnimatedButton onPress={handlePressGames} text="other games" />
-        <AnimatedButton onPress={handlePressStats} text="your stats" />
+<AnimatedButton onPress={handlePressList} text="COUNTRIES INFO" />
+        <AnimatedButton onPress={handlePressGames} text="OTHER GAMES" />
+        <AnimatedButton onPress={handlePressStats} text="YOUR STATS" />
  
      
            <LevelButton
@@ -136,23 +125,10 @@ const InsideView = ({ toggleSlideMain, toggleSlideGame, toggleSlideList, toggleS
           setSelectedLevel={setSelectedLevel}
         /> 
       
-      
-
         <View/>
-
-
-
         </View>
 
-
-
-
-
       </LinearGradient> 
-
-
-
-
 
     </SafeAreaView>
   );

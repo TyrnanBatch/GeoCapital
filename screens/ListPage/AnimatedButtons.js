@@ -92,11 +92,6 @@ const styles = StyleSheet.create({
     width: faceWidth,
     height: faceHeight,
     borderRadius: screenWidth * 0.2,
-    shadowOffset: { width: 1, height: 4 },
-    shadowOpacity: 0.4,
-    shadowRadius: 3,
-    elevation: 3,
-    shadowColor: 'black',
   },
   layer1: {
     position: 'absolute',
@@ -116,6 +111,11 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     borderRadius: borderRadius,
+    shadowOffset: { width: 1, height: 4 },
+    shadowOpacity: 0.4,
+    shadowRadius: 3,
+    elevation: 3,
+    shadowColor: 'black',
   },
   shine: {
     position: 'absolute',
@@ -162,8 +162,6 @@ const AnimatedButton = ({ country }) => {
         imageSource={require('../../Photos/Wikipedia.png')}
         color1="#98FB98"
         color2="#3dcf3d"
-        // color1="#b2d7ad"
-        // color2="#6C8A69"
       />
     </View>
   );

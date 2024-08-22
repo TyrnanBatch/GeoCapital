@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions, Image, ImageBackground } from 'react-native';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import DisplayWord from '../Multiple/DisplayWord';
 import DisplayNumber from '../Multiple/DisplayNumber';
 
 const { width: screenWidth } = Dimensions.get('window');
@@ -24,10 +23,7 @@ const Card = ({ name, backgroundColor, toggleGifTwo}) => {
     }
   };
 
- 
-
   const getHighScore = async (gameName) => {
-    console.log(gameName);
     try {
       let value;
       if (gameName === 'SizeGame') {
@@ -55,23 +51,24 @@ const Card = ({ name, backgroundColor, toggleGifTwo}) => {
   return (
     <View style={[styles.container, { backgroundColor }]}>
 
-{/* <View style={{backgroundColor: 'red', width: '100%', height: '100%'}}></View> */}
-
-
 <ImageBackground 
         source={require('../../Photos/BackgroundLines.png')}  // path to your image in the photos folder
         style={{ width: '100%', height: '100%', justifyContent: 'space-evenly',}}>
 
 {name === 'SizeGame' && (
           <View>
-          <DisplayWord Word={'countries'} sizeW={0.72} sizeH={0.1} left={0} />
-            <DisplayWord Word={'size game'} sizeW={0.72} sizeH={0.07} left={0} />
+<Text style={{color: 'black',fontSize: screenWidth * 0.1, alignSelf: 'center',
+fontFamily: 'Chalkboard SE', marginTop: -screenWidth * 0.02}} >{'BIGGER AND '}</Text> 
+<Text style={{color: 'black',fontSize: screenWidth * 0.1, alignSelf: 'center',
+fontFamily: 'Chalkboard SE', marginTop: -screenWidth * 0.02}} >{'SMALLER '}</Text> 
           </View>
         )}
         {name === 'PopulationGame' && (
           <View>
-          <DisplayWord Word={'countries'} sizeW={0.72} sizeH={0.1} left={0} />
-            <DisplayWord Word={'population game'} sizeW={0.72} sizeH={0.07} left={0} />
+            <Text style={{color: 'black',fontSize: screenWidth * 0.1, alignSelf: 'center',
+fontFamily: 'Chalkboard SE', marginTop: -screenWidth * 0.02}} >{'POPULATION '}</Text> 
+<Text style={{color: 'black',fontSize: screenWidth * 0.1, alignSelf: 'center',
+fontFamily: 'Chalkboard SE', marginTop: -screenWidth * 0.02}} >{'GAME '}</Text> 
           </View>
         )}
 
@@ -90,13 +87,17 @@ const Card = ({ name, backgroundColor, toggleGifTwo}) => {
       shadowOffset: { width: 3, height: 3 },
       shadowOpacity: 0.5,
       shadowRadius: 5,
-      elevation: 5,borderRadius: screenWidth * 0.03, opacity: 0.8, justifyContent: 'space-evenly', alignItems: 'center' }}>
+      elevation: 5,borderRadius: screenWidth * 0.03,
+       opacity: 0.8, justifyContent: 'space-evenly', alignItems: 'center' }}>
 
 
 
 
 <View style={{ width: screenWidth * 0.62, alignItems: 'center', justifyContent: 'center', }}>
-      <View><DisplayWord Word={"high score:"} sizeW={0.5} sizeH={0.07} left={0} /></View>
+      <View>
+        <Text style={{color: 'black',fontSize: screenWidth * 0.08, alignSelf: 'center',
+fontFamily: 'Chalkboard SE', marginTop: -screenWidth * 0.02}} >{'HIGH SCORE'}</Text> 
+        </View>
     </View>
 
     <View style={{ width: screenWidth * 0.62, alignItems: 'center', justifyContent: 'center',}}>
@@ -107,39 +108,6 @@ const Card = ({ name, backgroundColor, toggleGifTwo}) => {
       </View>
       </View>
       </ImageBackground>
-
-
-      {/* <View>
-
-        {name === 'SizeGame' && (
-          <>
-          <DisplayWord Word={'countries'} sizeW={0.75} sizeH={0.1} left={0} />
-            <DisplayWord Word={'size game'} sizeW={0.75} sizeH={0.07} left={0} />
-          </>
-        )}
-        {name === 'PopulationGame' && (
-          <>
-          <DisplayWord Word={'countries'} sizeW={0.75} sizeH={0.1} left={0} />
-            <DisplayWord Word={' population game'} sizeW={0.75} sizeH={0.07} left={1} />
-          </>
-        )}
-      </View>
-
-
-      <TouchableOpacity style={styles.touchableOpacity} onPress={handlePress}>
-      <Image source={require('../../Photos/PlayMini.png')} style={{ width: '100%', height: '100%', resizeMode: 'cover',  }} />
-      </TouchableOpacity>
-
-      <View style={{ width: screenWidth * 0.265, alignItems: 'center', justifyContent: 'center', }}>
-      <View><DisplayWord Word={"high score:"} sizeW={0.5} sizeH={0.07} left={0} /></View>
-    </View>
-
-    <View style={{ width: screenWidth * 0.265, alignItems: 'center', justifyContent: 'center',}}>
-        <DisplayNumber number={highScore} sizeH={0.25} left={0} />  
-    </View>
- */}
-
-
 
 
     </View>

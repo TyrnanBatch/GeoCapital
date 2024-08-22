@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
-import { View, TouchableOpacity, Alert, Image, StyleSheet, Dimensions, Animated } from 'react-native';
-import DisplayWord from '../Multiple/DisplayWord';
+import { View, TouchableOpacity, Alert, Image, StyleSheet, Dimensions, Animated, Text } from 'react-native';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -82,7 +81,10 @@ const CustomButton = ({ onPress, isSelected, label, children }) => {
             animatedStyle,
           ]}
         >
-          {children || <DisplayWord Word={label} sizeW={0.25} sizeH={0.028} left={0} />}
+          {children || 
+          <Text style={{color: 'black',fontSize: screenWidth * 0.034, alignSelf: 'center',
+fontFamily: 'Chalkboard SE', marginTop: -screenWidth * 0.006}} >{label}</Text>
+          }
           <Animated.View style={[styles.shine, shineStyle]} />
         </Animated.View>
       </View>

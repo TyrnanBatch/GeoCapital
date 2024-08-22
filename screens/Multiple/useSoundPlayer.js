@@ -11,7 +11,6 @@ const useSoundPlayer = () => {
     const loadSound = () => {
       const mySoundCorrect = new Sound('correct.mp4', Sound.MAIN_BUNDLE, (error) => {
         if (error) {
-          console.error('Failed to load the correct sound', error);
           return;
         }
         setSoundCorrect(mySoundCorrect);
@@ -19,7 +18,6 @@ const useSoundPlayer = () => {
 
       const mySoundWrong = new Sound('wrong.mp4', Sound.MAIN_BUNDLE, (error) => {
         if (error) {
-          console.error('Failed to load the wrong sound', error);
           return;
         }
         setSoundWrong(mySoundWrong);
@@ -44,10 +42,7 @@ const useSoundPlayer = () => {
           console.error('Correct sound did not play');
         }
       });
-    } else {
-      console.log('Sound not loaded', 'The correct sound is not loaded yet. Please try again later.');
     }
-    console.log('Sound not loaded', 'The correct sound is not loaded yet. Please try again later.');
   };
 
   const playSoundWrong = () => {
@@ -58,10 +53,7 @@ const useSoundPlayer = () => {
           console.error('Wrong sound did not play');
         }
       });
-    } else {
-      console.log('Sound not loaded', 'The wrong sound is not loaded yet. Please try again later.');
     }
-    console.log('Sound not loaded', 'The correct sound is not loaded yet. Please try again later.');
   };
 
   return { playSoundCorrect, playSoundWrong };

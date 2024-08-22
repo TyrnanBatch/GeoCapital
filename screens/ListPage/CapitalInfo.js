@@ -1,14 +1,11 @@
 import React,{ useState, useEffect} from 'react';
 import { View, Text, TouchableOpacity, Dimensions, StyleSheet, Linking, Image, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import DisplayWord from '../Multiple/DisplayWord';
 import FlagImage from '../Multiple/FlagImage';
 import LocationImage from '../Multiple/LocationImage';
 import { data } from '../../files/capitalData';
 import AnimatedButton from './AnimatedButtons';
 import LinearGradient from 'react-native-linear-gradient';
-import DisplayWordText from '../Multiple/DisplayWordText';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -28,12 +25,25 @@ const CapitalInfo = ({ route }) => {
   const [SizePosition, setSizePosition] = useState(null);
   const [continentPositionSize, setContinentPositionSize] = useState(null);
 
+  // useEffect(() => {
+  //   const worldData = [...data];
+  //   worldData.sort((a, b) => parsePopulation(b.population) - parsePopulation(a.population));
+  //   const ukPosition = worldData.findIndex(item => item.country === country) + 1;
+  //   setPopulationPosition(ukPosition);
+  // }, []);
   useEffect(() => {
+    let isMounted = true;  // <-- Track if the component is mounted
     const worldData = [...data];
     worldData.sort((a, b) => parsePopulation(b.population) - parsePopulation(a.population));
     const ukPosition = worldData.findIndex(item => item.country === country) + 1;
-    setPopulationPosition(ukPosition);
-  }, []);
+    if (isMounted) {
+      setPopulationPosition(ukPosition);  // <-- Update state only if component is still mounted
+    }
+    return () => {
+      isMounted = false;  // <-- Cleanup function to mark component as unmounted
+    };
+  }, [country]);  // <-- Add country as a dependency to ensure the effect runs when country changes
+  
   function parsePopulation(population) {
     let numericPopulation = parseInt(population.replace(/[^0-9.]/g, ''));
     if (population.includes('billion')) {
@@ -66,138 +76,69 @@ const CapitalInfo = ({ route }) => {
   }, [data, countryInfo.continent]);
   
 
-
-
-
   return (
 
 
-
-    
     <LinearGradient colors={[ '#ff69b4', '#ffb6c1']} style={{ flex: 1 }}>
 
-    {/* <View style={{width: screenWidth, height: screenWidth * 0.125,flexDirection: 'row',backgroundColor: 'white', zIndex: 80 }}>
-    <View style={{ width: screenWidth * 0.8, height: '100%', marginLeft: screenWidth * 0.08, alignItems: 'center', backgroundColor: 'white' ,}}>
-    {Platform.OS ? (
-     <View style={{backgroundColor: 'gray', width: screenWidth * 0.2, height: screenWidth * 0.015, marginTop: screenWidth * 0.02, borderRadius: screenWidth}}>
-    </View>
-    ) : null}
-    </View>
-      <TouchableOpacity style={{ postion: 'absoulte',top: 0, zIndex: 100,width: screenWidth, height: screenWidth * 0.12, justifyContent: 'center' }} onPress={navigate}>
-              <Image 
-                source={require('../../Photos/closeX.png')} // local photo
-                style={styles.photo}
-                resizeMode="contain" // make the image fit the screen
-              />
-            </TouchableOpacity>   
-    </View>
-    <View style={{ backgroundColor: 'white',top: -screenWidth * 0.019,zIndex: 80, width: screenWidth, height: screenWidth * 0.15, 
-    justifyContent: 'space-between', borderBottomLeftRadius: screenWidth * 0.022, borderBottomRightRadius: screenWidth * 0.022}}>
-{country === "DEMOCRATIC REPUBLIC OF THE CONGO" ? (
-                        <>
-                            <DisplayWordText Word={"DEMOCRATIC REPUBLIC"} sizeW={1} sizeH={0.051} left={1} />
-                            <DisplayWordText Word={"OF THE CONGO"} sizeW={1} sizeH={0.051} left={1} />
-                        </>
-                    ) : country === 'THE FEDERATED STATES OF MICRONESIA' ? (
-                        <>
-                            <DisplayWordText Word={"THE FEDERATED STATES"} sizeW={1} sizeH={0.051} left={1} />
-                            <DisplayWordText Word={"OF MICRONESIA"} sizeW={1} sizeH={0.051} left={1} />
-                        </>
-                    ) : country === 'SAINT VINCENT & THE GRENADINES' ? (
-                        <>
-                            <DisplayWordText Word={"SAINT VINCENT &"} sizeW={1} sizeH={0.051} left={1} />
-                            <DisplayWordText Word={"THE GRENADINES"} sizeW={1} sizeH={0.051} left={1} />
-                        </>
-                    ) : (
-                        <DisplayWordText Word={country} sizeW={1} sizeH={0.072} left={1} />
-                    )} 
-<DisplayWord Word={'capital - ' + countryInfo.capital} sizeW={1} sizeH={0.037} left={0} />
-<View/>
-</View> */}
-
-
 <View style={{width: screenWidth, height: screenWidth * 0.26,flexDirection: 'row',backgroundColor: 'white', 
-zIndex: 80, borderBottomRightRadius: screenWidth * 0.03,borderBottomLeftRadius: screenWidth * 0.03 }}>
+zIndex: 80, borderBottomRightRadius: screenWidth * 0.03,borderBottomLeftRadius: screenWidth * 0.03,shadowOffset: { width: 1, height: 4 },
+shadowOpacity: 0.4,
+shadowRadius: 3,
+elevation: 3,
+shadowColor: 'black', }}>
 
 <View style={{ width: screenWidth, height: screenWidth * 0.11, alignItems: 'center'}}>
-{Platform.OS ? (
-     <View style={{backgroundColor: 'gray', width: screenWidth * 0.25, height: screenWidth * 0.015, marginTop: screenWidth * 0.02, borderRadius: screenWidth}}>
+     <View style={{backgroundColor: 'gray', width: screenWidth * 0.25, height: screenWidth * 0.015, marginTop: screenWidth * 0.02, borderRadius: screenWidth,}}>
     </View>
-    ) : null}
     <TouchableOpacity style={{ width: screenWidth * 0.1, height: screenWidth * 0.1, position: 'absolute', right: screenWidth * 0.013, top: screenWidth * 0.013 }} onPress={navigate}>
               <Image 
-                source={require('../../Photos/closeX.png')} // local photo
+                source={require('../../Photos/closeX.png')}
                 style={styles.photo}
-                resizeMode="contain" // make the image fit the screen
+                resizeMode="contain"
               />
             </TouchableOpacity>    
-
-
-            <View style={{ width: screenWidth, height: screenWidth * 0.142, marginTop: screenWidth * 0.078, justifyContent: 'space-evenly'}}>
-
-
-            {country === "DEMOCRATIC REPUBLIC OF THE CONGO" ? (
-                        <>
-                            <DisplayWordText Word={"DEMOCRATIC REPUBLIC"} sizeW={1} sizeH={0.051} left={1} />
-                            <DisplayWordText Word={"OF THE CONGO"} sizeW={1} sizeH={0.051} left={1} />
-                        </>
-                    ) : country === 'THE FEDERATED STATES OF MICRONESIA' ? (
-                        <>
-                            <DisplayWordText Word={"THE FEDERATED STATES"} sizeW={1} sizeH={0.051} left={1} />
-                            <DisplayWordText Word={"OF MICRONESIA"} sizeW={1} sizeH={0.051} left={1} />
-                        </>
-                    ) : country === 'SAINT VINCENT & THE GRENADINES' ? (
-                        <>
-                            <DisplayWordText Word={"SAINT VINCENT &"} sizeW={1} sizeH={0.051} left={1} />
-                            <DisplayWordText Word={"THE GRENADINES"} sizeW={1} sizeH={0.051} left={1} />
-                        </>
-                    ) : (
-                        <DisplayWordText Word={country} sizeW={1} sizeH={0.072} left={1} />
-                    )} 
-
-<DisplayWord Word={'capital - ' + countryInfo.capital} sizeW={1} sizeH={0.037} left={0} />
-
+            <View style={{ width: screenWidth, height: screenWidth * 0.142, marginTop: screenWidth * 0.078, justifyContent: 'space-evenly', }}>
+<Text style={{color: 'black',fontSize: screenWidth * 0.055, alignSelf: 'center',
+fontFamily: 'Chalkboard SE',}}>{country}</Text>
+<Text style={{color: 'black',fontSize: screenWidth * 0.055, alignSelf: 'center',
+fontFamily: 'Chalkboard SE',}}>{'CAPITAL - ' + countryInfo.capital}</Text>
+<View style={{height: screenWidth * 0.03}}/>
             </View>
-            
 </View>
-
 </View>
-
-
-
-
-
-
 
 
 <View style={{flex: 1, justifyContent: 'space-evenly', alignItems: 'center',}}>
-
-
-{/* <View style={styles.container}> */}
-
-{/* <View style={{width: '100%',  height: '100%', justifyContent: 'space-evenly', alignItems: 'center', backgroundColor: 'red'}}> */}
-
-
 
 <View style={{width: screenWidth * 0.94, 
    backgroundColor: 'white',
    height: screenWidth * 0.34, justifyContent: 'space-evenly', flexDirection: 'row',
    alignItems: 'center',
-   borderRadius: screenWidth * 0.02,}}>
+   borderRadius: screenWidth * 0.02,shadowOffset: { width: 1, height: 4 },
+   shadowOpacity: 0.4,
+   shadowRadius: 3,
+   elevation: 3,
+   shadowColor: 'black',}}>
   <View style={styles.flagContainer}>
         <FlagImage country={country} />
   </View>
-        <View style={{ width: screenWidth * 0.44, height: screenWidth * 0.34, justifyContent: 'space-evenly'}}>
-        <DisplayWord Word={countryInfo.continent} sizeW={0.44} sizeH={0.054} left={0} />
-
+        <View style={{ width: screenWidth * 0.44, height: screenWidth * 0.34, justifyContent: 'space-evenly', }}>
+        <Text style={{color: 'black',fontSize: screenWidth * 0.05, alignSelf: 'center',
+fontFamily: 'Chalkboard SE',}}>{countryInfo.continent}</Text>
 <View>
-        <DisplayWord Word={'the capital ' + countryInfo.capital} sizeW={0.44} sizeH={0.02} left={1} />
-        <View style={{margin: screenWidth * 0.002}}/>
-        <DisplayWord Word={'is located at these corrdinets'} sizeW={0.44} sizeH={0.02} left={1} />
-        </View>
-        <DisplayWord Word={'longitude: ' + countryInfo.longitude} sizeW={0.44} sizeH={0.037} left={1} />
-<DisplayWord Word={'latitude:  ' + countryInfo.latitude} sizeW={0.44} sizeH={0.037} left={1} />    
+        <Text style={{color: 'black',fontSize: screenWidth * 0.0265, 
+fontFamily: 'Chalkboard SE',}}>{'THE CAPITAL ' + countryInfo.capital}</Text>
+        <Text style={{color: 'black',fontSize: screenWidth * 0.0265, 
+fontFamily: 'Chalkboard SE',}}>{'IS LOCATED AT THESE CORRDINETS'}</Text>
+        <Text style={{color: 'black',fontSize: screenWidth * 0.0265, 
+fontFamily: 'Chalkboard SE',}}>{'LONGITUDE : ' + countryInfo.longitude}</Text>
+ <Text style={{color: 'black',fontSize: screenWidth * 0.0265, 
+fontFamily: 'Chalkboard SE',}}>{'LATITUDE   :  ' + countryInfo.latitude}</Text>
+  </View>
      </View>
+
+
      </View> 
 
 
@@ -206,22 +147,44 @@ zIndex: 80, borderBottomRightRadius: screenWidth * 0.03,borderBottomLeftRadius: 
    backgroundColor: 'white',
    height: screenWidth * 0.2, justifyContent: 'space-evenly', 
    alignItems: 'center',
-   borderRadius: screenWidth * 0.025,}}>
-        <DisplayWord Word={'size'} sizeW={0.42} sizeH={0.027} left={0} />
-        <DisplayWord Word={countryInfo.size} sizeW={0.42} sizeH={0.05} left={0} />
-      <DisplayWord Word={' in ' + countryInfo.continent + ':  ' + continentPositionSize + '/' + contientDataSize} sizeW={0.42} sizeH={0.027} left={1} />
-      <DisplayWord Word={' in world:   ' + SizePosition + "/195"} sizeW={0.42} sizeH={0.027} left={1} />
+   borderRadius: screenWidth * 0.025,shadowOffset: { width: 1, height: 4 },
+   shadowOpacity: 0.4,
+   shadowRadius: 3,
+   elevation: 3,
+   shadowColor: 'black',}}>
+<Text style={{color: 'black',fontSize: screenWidth * 0.03, 
+fontFamily: 'Chalkboard SE',}}>{'SIZE'}</Text>
+<Text style={{color: 'black',fontSize: screenWidth * 0.03, 
+fontFamily: 'Chalkboard SE',}}>{(countryInfo.size).toUpperCase()}</Text>
+<Text style={{color: 'black',fontSize: screenWidth * 0.03, 
+fontFamily: 'Chalkboard SE',}}>{(' IN ' + countryInfo.continent + ':  ' + continentPositionSize + ' / ' + contientDataSize).toUpperCase()}</Text>
+<Text style={{color: 'black',fontSize: screenWidth * 0.03, 
+fontFamily: 'Chalkboard SE',}}>{(' in world:   ' + SizePosition + " / 195").toUpperCase()}</Text>
+<View/>
      </View>
+
+
+
      <View style={{width: screenWidth * 0.44, 
    backgroundColor: 'white',
    height: screenWidth * 0.2, justifyContent: 'space-evenly', 
    alignItems: 'center',
-   borderRadius: screenWidth * 0.02, }}>
+   borderRadius: screenWidth * 0.02, shadowOffset: { width: 1, height: 4 },
+   shadowOpacity: 0.4,
+   shadowRadius: 3,
+   elevation: 3,
+   shadowColor: 'black',}}>
 
-<DisplayWord Word={'population'} sizeW={0.42} sizeH={0.027} left={0} />
-<DisplayWord Word={countryInfo.population} sizeW={0.42} sizeH={0.05} left={0} />
-      <DisplayWord Word={' in ' + countryInfo.continent + ':  ' + continentPosition + '/' + contientDataSize} sizeW={0.42} sizeH={0.027} left={1} />
-      <DisplayWord Word={' in world:   ' + PopulationPosition + "/195"} sizeW={0.42} sizeH={0.027} left={1} /> 
+<Text style={{color: 'black',fontSize: screenWidth * 0.03, 
+fontFamily: 'Chalkboard SE',}}>{'POPULATION'}</Text>
+<Text style={{color: 'black',fontSize: screenWidth * 0.03, 
+fontFamily: 'Chalkboard SE',}}>{(countryInfo.population).toUpperCase()}</Text>
+<Text style={{color: 'black',fontSize: screenWidth * 0.03, 
+fontFamily: 'Chalkboard SE',}}>{(' IN ' + countryInfo.continent + ':  ' + continentPosition + ' / ' + contientDataSize).toUpperCase()}</Text>
+<Text style={{color: 'black',fontSize: screenWidth * 0.03, 
+fontFamily: 'Chalkboard SE',}}>{(' in world:   ' + PopulationPosition + " / 195").toUpperCase()}</Text>
+<View/>
+
      </View>
      </View> 
 
@@ -229,11 +192,19 @@ zIndex: 80, borderBottomRightRadius: screenWidth * 0.03,borderBottomLeftRadius: 
 <View style={styles.imageContainer}>
         <LocationImage country={country} />
       </View>
-<View style={{ height: screenWidth * 0.127,}}>
-   <AnimatedButton country={country}/>
-   </View>
- </View> 
 
+
+
+      {!Platform.isPad ? (
+  <View style={{ height: screenWidth * 0.127 }}>
+    <AnimatedButton country={country} />
+  </View>
+) : null}
+
+
+
+
+ </View> 
 
     </LinearGradient > 
 
@@ -247,8 +218,8 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   imageContainer: {
-    width: Platform.isPad ? screenWidth * 0.4 : screenWidth * 0.7,
-    height: Platform.isPad ? screenWidth * 0.4 : screenWidth * 0.7,
+    width: Platform.isPad ? screenWidth * 0.44 : screenWidth * 0.7,
+    height: Platform.isPad ? screenWidth * 0.44 : screenWidth * 0.7,
   },
   flagContainer: {
     width: screenWidth * 0.4,

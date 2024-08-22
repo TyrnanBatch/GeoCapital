@@ -22,7 +22,6 @@ const HomeScreen = () => {
 
   const [gamesPlayed, setGamesPlayed] = useState(0);
 
-  // Function to get gamesPlayed from AsyncStorage
   const getGamesPlayed = async () => {
     try {
       const value = await AsyncStorage.getItem('gamesPlayed');
@@ -31,16 +30,6 @@ const HomeScreen = () => {
       }
     } catch (error) {
       console.error('Error fetching gamesPlayed from AsyncStorage:', error);
-    }
-  };
-
-
-  const clearAsyncStorage = async () => {
-    try {
-      await AsyncStorage.clear();
-      Alert.alert('Success', 'All storage data has been cleared.');
-    } catch (error) {
-      Alert.alert('Error', 'Failed to clear the storage.');
     }
   };
 
@@ -83,7 +72,6 @@ const HomeScreen = () => {
       duration: 1000,
       useNativeDriver: false,
     }).start(() => {
-      console.log('Animation finished');
       setIsExpanded(!isExpanded);
     });
   };
@@ -94,7 +82,6 @@ const HomeScreen = () => {
       duration: 1000,
       useNativeDriver: false,
     }).start(() => {
-      console.log('Animation finished');
       setIsExpanded2(!isExpanded2);
     });
   };
@@ -165,16 +152,11 @@ const HomeScreen = () => {
         style={{ flex: 1, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
       />
       <View style={styles.container}>
-
-      {Platform.OS === 'android' && ( <View style={{width: '100%', height: screenWidth * 0.03, }} />)}
-        
-
         <View style={styles.topSection}>
           <Animated.View style={{ opacity: fadeAnim }}>
             <InsideTopView />
           </Animated.View>
         </View>
-          {/* <Button title="Clear Async Storage" onPress={clearAsyncStorage} />  */}
         <View style={{ flex: 5 }}>
           <Animated.View style={[styles.bottomSection2, { transform: [{ translateY: slideUp }] }]}>
             <InsideViewStats toggleSlide2={toggleSlide2} />

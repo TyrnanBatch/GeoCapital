@@ -1,7 +1,5 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, Dimensions  } from 'react-native';
-import DisplayWord from '../Multiple/DisplayWord';
-import DisplayWordReturnNew from '../Multiple/DisplayWordReturnNew';
 import FlagImage from '../Multiple/FlagImage';
 
 const { width: screenWidth, height: height } = Dimensions.get('window');
@@ -18,15 +16,20 @@ const SwipeCard = ({ country, capital, latitude, longitude, position, game }) =>
 
 {game === 'country' ? (  
 <View style={{ height: screenWidth * 0.28, width: '100%',  justifyContent: 'center'}}>
-<DisplayWordReturnNew Word={country} sizeW={0.43} sizeH={0.04} left={1} />
+<Text style={{color: 'black',fontSize: screenWidth * 0.038, alignSelf: 'center',
+    marginTop: -screenWidth * 0.01,   fontFamily: 'Chalkboard SE', }} >{country}</Text> 
 </View>
  ):(
   <>
 <View style={{ height: screenWidth * 0.18, width: '100%', justifyContent: 'center'}}>
-<DisplayWordReturnNew Word={capital} sizeW={0.43} sizeH={0.04} left={1} />
+
+<Text style={{color: 'black',fontSize: screenWidth * 0.04, alignSelf: 'center',
+    marginTop: -screenWidth * 0.01,   fontFamily: 'Chalkboard SE', }} >{capital}</Text> 
+
 </View>
 <View style={{ height: screenWidth * 0.1, width: '100%',  justifyContent: 'center'}}>
-<DisplayWordReturnNew Word={country} sizeW={0.43} sizeH={0.02} left={1} />
+<Text style={{color: 'black',fontSize: screenWidth * 0.023, alignSelf: 'center',
+    marginTop: -screenWidth * 0.01,   fontFamily: 'Chalkboard SE', }} >{country}</Text> 
 </View></>
  )}
 
@@ -39,11 +42,13 @@ const SwipeCard = ({ country, capital, latitude, longitude, position, game }) =>
 {position === "left" ? (
     <View style={{ flexDirection: 'row', alignItems: 'center',justifyContent: 'space-evenly',}}>
       <Image source={require('../../Photos/arrowBlackLeft.png')} style={{ width: screenWidth * 0.04, height: screenWidth * 0.04,  }} />
-      <DisplayWord Word={'swipe card to the left'} sizeW={0.28} sizeH={0.022} left={0} />
+      <Text style={{color: 'black',fontSize: screenWidth * 0.025, alignSelf: 'center',
+    fontFamily: 'Chalkboard SE', }} >{'swipe card to the left'}</Text> 
     </View>
   ) : (
     <View style={{ flexDirection: 'row', alignItems: 'center',justifyContent: 'space-evenly',}}>
-    <DisplayWord Word={'swipe card to the right'} sizeW={0.32} sizeH={0.022} left={0} />
+    <Text style={{color: 'black',fontSize: screenWidth * 0.025, alignSelf: 'center',
+    fontFamily: 'Chalkboard SE', }} >{'swipe card to the right'}</Text> 
       <Image source={require('../../Photos/arrowBlackRight.png')} style={{ width: screenWidth * 0.04, height: screenWidth * 0.04, }} />
   </View>
   )}

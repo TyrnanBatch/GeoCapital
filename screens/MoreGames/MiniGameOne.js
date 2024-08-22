@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, Button, TouchableOpacity, Dimensions,ScrollView
    Image, TextInput, KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { data } from '../../files/capitalData';
-import DisplayWord from '../Multiple/DisplayWord';
 import DisplayWordButton from '../Multiple/DisplayWordButton';
 import EndGameTwo from '../EndGame/EndGameTwo';
 import LinearGradient from 'react-native-linear-gradient';
@@ -11,7 +10,7 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import useSoundPlayer from '../Multiple/useSoundPlayer';
 import LocationImage from '../Multiple/LocationImage';
 import FlagImage from '../Multiple/FlagImage';
-import DisplayWordReturnNew from '../Multiple/DisplayWordReturnNew';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
@@ -34,8 +33,16 @@ const MiniGameOne = ({ route }) => {
 
     const CapitalfilteredData = continent === 'The World' ? data : data.filter(item => item.continent === continent);
 
-
-
+    const incrementGamesPlayed = async () => {
+      try {
+        const gamesPlayed = parseInt(await AsyncStorage.getItem('gamesPlayed')) || 0;
+        await AsyncStorage.setItem('gamesPlayed', (gamesPlayed + 1).toString());
+      } catch (error) {
+        console.error('Error updating gamesPlayed:', error);
+      }
+    };
+    
+    useEffect(() => { incrementGamesPlayed(); }, []);
 
     useEffect(() => {
         getNextCapital();
@@ -110,13 +117,10 @@ if (game === 'CapitalsGame') {
     filteredData = data.filter(item => item.country.startsWith(chosenLetter)).sort((a, b) => a.country.localeCompare(b.country));
 }
 
-
-
       const [input, setInput] = useState('');
       const inputRef = useRef(null);
     
       const sanitizeInput = (text) => {
-        // Normalize the text to NFD (Normalization Form Decomposition) to separate diacritics from letters
         return text.normalize('NFD')
                    // Remove diacritics
                    .replace(/[\u0300-\u036f]/g, '')
@@ -200,8 +204,6 @@ setBackgroundColor(null);
         />
       )}
 
- {Platform.OS === 'android' && ( <View style={{width: '100%', height: screenWidth * 0.03, }} />)}
-
 
      <SafeAreaView style={{ backgroundColor: backgroundColor, flex: 1, width: '100%', alignItems: 'center',  }}>
 
@@ -219,7 +221,6 @@ setBackgroundColor(null);
           }}>
           <View style={{backgroundColor: 'white', width: '100%', height: '97%', 
           borderColor: 'black', 
-          // borderWidth: screenWidth * 0.007,
             borderRadius: screenWidth * 0.04,padding: screenWidth * 0.007,   }}>
 
  <View style={{ width: '100%', height: Platform.isPad ? screenWidth * 0.06 : screenWidth * 0.12, flexDirection: 'row',}}>
@@ -227,17 +228,17 @@ setBackgroundColor(null);
   <View style={{ width: Platform.isPad ? screenWidth * 0.79 : screenWidth * 0.74, height: Platform.isPad ? screenWidth * 0.06 : screenWidth * 0.12, justifyContent: 'center'}}>
 
   { game === "LocationGame" ? ( 
-  <><DisplayWord Word={'what country is highlighted on the map ?'} sizeW={0.73} sizeH={0.03} left={0} />
+  <>
+  <Text style={{color: 'black',fontSize: screenWidth * 0.033, alignSelf: 'center',
+fontFamily: 'Chalkboard SE', marginTop: -screenWidth * 0.01}} >{'WHAT COUNTRY IS HIGHLIGHTED ON THE MAP'}</Text> 
   <View style={{height: Platform.isPad ? screenWidth * 0.03 : screenWidth * 0.07}}/></>
 ) : null}
-
 
   </View>
   <View style={{ width: Platform.isPad ? screenWidth * 0.06 : screenWidth * 0.1, height: Platform.isPad ? screenWidth * 0.06 : screenWidth * 0.12, }}>
   <TouchableOpacity onPress={handleBackPress} style={{
     alignItems: 'center',justifyContent: 'center',
     height: Platform.isPad ? screenWidth * 0.06 : screenWidth * 0.12,width: Platform.isPad ? screenWidth * 0.06 : screenWidth * 0.12,
- 
    }}>
       <Image
         resizeMode="stretch"
@@ -257,15 +258,16 @@ setBackgroundColor(null);
     <View style={{ width: '96%',marginLeft: screenWidth * 0.02, height: Platform.isPad ? screenWidth * 0.45 : screenWidth * 0.58, justifyContent: 'space-evenly', alignItems: 'center',
     backgroundColor: 'rgba(128, 0, 128, 0.2)', marginTop: screenWidth * 0.005, borderRadius: screenWidth * 0.03
     }}>
-     
-     <DisplayWord Word={'what is the capital of'} sizeW={0.9} sizeH={0.06} left={0} />
-
- <DisplayWordReturnNew Word={randomCountry} sizeW={0.8} sizeH={0.1} left={1} />  
+     <Text style={{color: 'black',fontSize: screenWidth * 0.06, alignSelf: 'center',
+fontFamily: 'Chalkboard SE', }} >{'WHAT IS THE CAPITAL OF'}</Text> 
+ <Text style={{color: 'black',fontSize: screenWidth * 0.08, alignSelf: 'center',
+fontFamily: 'Chalkboard SE', }} >{randomCountry}</Text> 
    
    <View style={{backgroundColor: 'orange',borderRadius: screenWidth * 0.04, width: screenWidth * 0.7, height: screenWidth * 0.1, justifyContent: 'space-evenly', alignItems: 'center'}}>
-    {showAnswer && (
-        <DisplayWord Word={randomCapitalName} sizeW={0.7} sizeH={0.06} left={0} />
-    )}
+     {showAnswer && ( 
+        <Text style={{color: 'black',fontSize: screenWidth * 0.06, alignSelf: 'center', marginTop: -screenWidth * 0.01,
+fontFamily: 'Chalkboard SE', }} >{randomCapitalName}</Text> 
+)}
 </View>
 
     </View>
@@ -274,19 +276,21 @@ setBackgroundColor(null);
     <View style={{ width: '96%',marginLeft: screenWidth * 0.02, height: Platform.isPad ? screenWidth * 0.45 : screenWidth * 0.58, justifyContent: 'space-evenly', alignItems: 'center',
     backgroundColor: 'rgba(128, 0, 128, 0.2)', marginTop: screenWidth * 0.005, borderRadius: screenWidth * 0.03
      }}>
-    <DisplayWord Word={'this is the flag of what country ?'} sizeW={0.9} sizeH={0.042} left={0} />
+    <Text style={{color: 'black',fontSize: screenWidth * 0.046, alignSelf: 'center',
+fontFamily: 'Chalkboard SE', }} >{'THIS IS THE FLAG OF WHAT COUNTRY ?'}</Text> 
 <View style={styles.flagContainer}>
         <FlagImage country={randomCapital.country} />
   </View>
   <View style={{backgroundColor: 'orange',borderRadius: screenWidth * 0.045, width: screenWidth * 0.7, height: screenWidth * 0.1, justifyContent: 'space-evenly', alignItems: 'center'}}>
-   {showAnswer && (
-       <DisplayWord Word={randomCountry} sizeW={0.7} sizeH={0.06} left={0} />
-   )}
+    {showAnswer && ( 
+      <Text style={{color: 'black',fontSize: screenWidth * 0.04, alignSelf: 'center', marginTop: -screenWidth * 0.01,
+fontFamily: 'Chalkboard SE', }} >{randomCountry}</Text> 
+   )} 
 </View>
    </View>
 
 ) : game === "LocationGame" ? ( 
-  <View style={{marginTop: Platform.isPad ? -screenWidth * 0.02 : -screenWidth * 0.07, width: Platform.isPad ? screenWidth * 0.47 : screenWidth * 0.65, height: Platform.isPad ? screenWidth * 0.47 : screenWidth * 0.65, alignSelf: 'center'}}>
+  <View style={{marginTop: Platform.isPad ? -screenWidth * 0.02 : -screenWidth * 0.07, width: Platform.isPad ? screenWidth * 0.5 : screenWidth * 0.7, height: Platform.isPad ? screenWidth * 0.5 : screenWidth * 0.7, alignSelf: 'center'}}>
 <LocationImage country={randomCountry}/>
 </View>
 ) : null}
@@ -294,11 +298,16 @@ setBackgroundColor(null);
 
   
   </View> 
- <View style={{ width: '100%', height: Platform.isPad ? screenWidth * 0.115 : screenWidth * 0.12, flexDirection: 'row', justifyContent: 'space-evenly' }}>
+ <View style={{ width: '100%', height: Platform.isPad ? screenWidth * 0.115 : screenWidth * 0.12, flexDirection: 'row', justifyContent: 'space-evenly',
+  bottom: game === "LocationGame"
+      ? (Platform.isPad ? -screenWidth * 0.015 : -screenWidth * 0.033)
+      : (Platform.isPad ? 0 : -screenWidth * 0.01),
+   }}>
   
 
 <View style={{width: screenWidth * 0.484, height: Platform.isPad ? screenWidth * 0.115 : screenWidth * 0.12, alignItems: 'center', justifyContent: 'center'}}>
-<DisplayWord Word={'score: ' + score + '/' + CapitalfilteredData.length} sizeW={0.48} sizeH={0.06} left={0} />
+<Text style={{color: 'black',fontSize: screenWidth * 0.05, alignSelf: 'center', 
+fontFamily: 'Chalkboard SE', }} >{('score: ' + score + '/' + CapitalfilteredData.length).toUpperCase()}</Text> 
 </View>
 <View style={{ width: screenWidth * 0.484, height: Platform.isPad ? screenWidth * 0.115 : screenWidth * 0.12,alignItems: 'center', justifyContent: 'center'}}>
 
@@ -306,7 +315,7 @@ setBackgroundColor(null);
       style={{ 
         backgroundColor: '#98FB98', 
         width: screenWidth * 0.4, 
-        height: screenWidth * 0.08, 
+        height:     game === "LocationGame" ? screenWidth * 0.07 : screenWidth * 0.08, 
         justifyContent: 'space-evenly', 
         alignItems: 'center', 
         borderRadius: screenWidth * 0.04,
@@ -314,9 +323,11 @@ setBackgroundColor(null);
       onPress={handleBackPressKeyboard}
     >
       { keyBoard  ? ( 
-      <DisplayWord Word={'use keypad ?'} sizeW={0.34} sizeH={0.035} left={0} />
+      <Text style={{color: 'black',fontSize: screenWidth * 0.04, alignSelf: 'center', 
+fontFamily: 'Chalkboard SE', marginTop: -screenWidth * 0.01,}} >{('use keypad ?').toUpperCase()}</Text> 
 ) :  ( 
-  <DisplayWord Word={'use keyboard ?'} sizeW={0.34} sizeH={0.035} left={0} />
+  <Text style={{color: 'black',fontSize: screenWidth * 0.04, alignSelf: 'center', 
+fontFamily: 'Chalkboard SE', marginTop: -screenWidth * 0.01,}} >{('use keyboard ?').toUpperCase()}</Text> 
 )}
     </TouchableOpacity>
 </View>
@@ -373,9 +384,11 @@ setBackgroundColor(null);
         <View style={styles.layer1}>
 
         {Platform.isPad ? (
-                            <DisplayWord Word={letter} sizeW={0.1} sizeH={0.05} left={0} /> 
+                            <Text style={{color: 'black',fontSize: screenWidth * 0.06, alignSelf: 'center', 
+                            fontFamily: 'Chalkboard SE', marginTop: -screenWidth * 0.01,}} >{(letter).toUpperCase()}</Text> 
                             ):(
-                              <DisplayWord Word={letter} sizeW={0.14} sizeH={0.08} left={0} /> 
+                              <Text style={{color: 'black',fontSize: screenWidth * 0.07, alignSelf: 'center', 
+                            fontFamily: 'Chalkboard SE', marginTop: -screenWidth * 0.01,}} >{(letter).toUpperCase()}</Text> 
                             )}
         </View>
 
@@ -391,7 +404,8 @@ setBackgroundColor(null);
                             
                         }}>
                     
-                              <DisplayWord Word={'The letter: ' + chosenLetter} sizeW={0.7} sizeH={0.06} left={0} />
+                              <Text style={{color: 'black',fontSize: screenWidth * 0.06, alignSelf: 'center', 
+                            fontFamily: 'Chalkboard SE', marginTop: -screenWidth * 0.01,}} >{('The letter : ' + chosenLetter).toUpperCase()}</Text> 
                             
 
                             <TouchableOpacity onPress={handleLetterPressLeave} style={{

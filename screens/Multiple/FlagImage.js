@@ -42,7 +42,7 @@ const flagImages = {
   'CHINA': require('../../assets/flags/CHINA.png'),
   'COLOMBIA': require('../../assets/flags/COLOMBIA.png'),
   'COMOROS': require('../../assets/flags/COMOROS.png'),
-  'DEMOCRATIC REPUBLIC OF THE CONGO': require('../../assets/flags/DRC.png'),
+  'THE DRC': require('../../assets/flags/DRC.png'),
   'REPUBLIC OF THE CONGO': require('../../assets/flags/CONGOREPUBLIC.png'),
   'COSTA RICA': require('../../assets/flags/COSTARICA.png'),
   "CÔTE D'IVOIRE": require('../../assets/flags/COTEDIVOIRE.png'),

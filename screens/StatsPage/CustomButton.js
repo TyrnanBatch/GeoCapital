@@ -1,141 +1,5 @@
-// // CustomButton.js
-// import React, { useRef } from 'react';
-// import { View, StyleSheet, Animated, TouchableWithoutFeedback, Dimensions, Platform } from 'react-native';
-// import DisplayWord from '../Multiple/DisplayWord'; // Adjust this import based on your project structure
-
-// const { width: screenWidth } = Dimensions.get('window');
-
-// const CustomButton = ({ onPress, text, color1, color2 }) => {
-//   const animatedValue = useRef(new Animated.Value(0)).current;
-//   const shineValue = useRef(new Animated.Value(0)).current;
-
-//   const handlePress = () => {
-//     Animated.sequence([
-//       Animated.parallel([
-//         Animated.spring(animatedValue, {
-//           toValue: 1,
-//           speed: 20,
-//           bounciness: 5,
-//           useNativeDriver: true,
-//         }),
-//         Animated.timing(shineValue, {
-//           toValue: 1,
-//           duration: 300,
-//           useNativeDriver: true,
-//         }),
-//       ]),
-//       Animated.parallel([
-//         Animated.spring(animatedValue, {
-//           toValue: 0,
-//           speed: 20,
-//           bounciness: 5,
-//           useNativeDriver: true,
-//         }),
-//         Animated.timing(shineValue, {
-//           toValue: 0,
-//           duration: 300,
-//           useNativeDriver: true,
-//         }),
-//       ]),
-//     ]).start(() => {
-//       if (onPress) {
-//         onPress();
-//       }
-//     });
-//   };
-
-//   const animatedStyle = {
-//     transform: [
-//       {
-//         translateY: animatedValue.interpolate({
-//           inputRange: [0, 1],
-//           outputRange: [0, Platform.isPad ? screenWidth * 0.013 : screenWidth * 0.019],
-//         }),
-//       },
-//     ],
-//   };
-
-//   const shineStyle = {
-//     opacity: shineValue.interpolate({
-//       inputRange: [0, 1],
-//       outputRange: [0, 0.8],
-//     }),
-//     transform: [
-//       {
-//         translateX: shineValue.interpolate({
-//           inputRange: [0, 1],
-//           outputRange: [-screenWidth, screenWidth],
-//         }),
-//       },
-//     ],
-//   };
-
-//   return (
-//     <TouchableWithoutFeedback onPress={handlePress}>
-//       <View style={styles.button}>
-//         <View style={[styles.layer2, { backgroundColor: color2 }]} />
-//         <Animated.View style={[styles.layer1, animatedStyle, { backgroundColor: color1 }]}>
-//         {text === 'countries and capitals' ? (
-//             <>
-//               <DisplayWord Word={'countries and'} sizeW={0.3} sizeH={0.033} left={0} />
-//               <DisplayWord Word={'capitals'} sizeW={0.3} sizeH={0.033} left={0} />
-//             </>
-//           ) : (
-//             <DisplayWord Word={text} sizeW={0.3} sizeH={0.034} left={0} />
-//           )}
-//           <Animated.View style={[styles.shine, shineStyle]} />
-//         </Animated.View>
-//       </View>
-//     </TouchableWithoutFeedback>
-//   );
-// };
-
-// const faceWidth = screenWidth * 0.3;
-// const faceHeight = faceWidth * 0.25;
-
-// const styles = StyleSheet.create({
-//   button: {
-//     position: 'relative',
-//     width: faceWidth,
-//     height: faceHeight,
-//   },
-//   layer1: {
-//     position: 'absolute',
-//     top: 0,
-//     left: 0,
-//     width: '100%',
-//     height: '100%',
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     borderRadius: screenWidth * 0.02,
-//     overflow: 'hidden',
-//   },
-//   layer2: {
-//     position: 'absolute',
-//     top: screenWidth * 0.02,
-//     left: 0,
-//     width: '100%',
-//     height: '100%',
-//     borderRadius: screenWidth * 0.02,
-//   },
-//   shine: {
-//     position: 'absolute',
-//     top: 0,
-//     left: 0,
-//     width: '300%',
-//     height: '100%',
-//     backgroundColor: 'rgba(255, 255, 255, 0.5)',
-//     transform: [{ rotate: '45deg' }],
-//   },
-// });
-
-// export default CustomButton;
-
-
-/// CustomButton.js
 import React, { useRef } from 'react';
-import { View, StyleSheet, Animated, TouchableWithoutFeedback, Dimensions, Platform } from 'react-native';
-import DisplayWord from '../Multiple/DisplayWord'; // Adjust this import based on your project structure
+import { View, StyleSheet, Animated, TouchableWithoutFeedback, Dimensions, Platform, Text } from 'react-native';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -213,15 +77,15 @@ const CustomButton = ({ onPress, text, color1, color2 }) => {
         <Animated.View style={[styles.layer1, animatedStyle, { backgroundColor: color1 }]}>
           {text === 'countries and capitals' ? (
             isPad ? (
-              <DisplayWord Word={'countries and capitals'} sizeW={0.3} sizeH={0.02} left={0} />
+              <Text style={{color: 'black',fontSize: screenWidth * 0.02, alignSelf: 'center', 
+                            fontFamily: 'Chalkboard SE', }} >{'COUNTRIES AND CAPITALS'}</Text> 
             ) : (
-              <>
-                <DisplayWord Word={'countries and'} sizeW={0.3} sizeH={0.03} left={0} />
-                <DisplayWord Word={'capitals'} sizeW={0.3} sizeH={0.03} left={0} />
-              </>
+                 <Text style={{color: 'black',fontSize: screenWidth * 0.0265, alignSelf: 'center', 
+                            fontFamily: 'Chalkboard SE', }} >{'COUNTRIES AND\n    CAPITALS'}</Text> 
             )
           ) : (
-            <DisplayWord Word={text} sizeW={0.3} sizeH={isPad ? 0.02 : 0.034} left={0} />
+            <Text style={{color: 'black',fontSize: isPad ? screenWidth * 0.02 : screenWidth * 0.03, alignSelf: 'center', 
+                            fontFamily: 'Chalkboard SE', }} >{(text).toUpperCase()}</Text> 
           )}
           <Animated.View style={[styles.shine, shineStyle]} />
         </Animated.View>

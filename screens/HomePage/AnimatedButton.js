@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
-import { View, StyleSheet, Animated, TouchableWithoutFeedback, Dimensions, Platform } from 'react-native';
-import DisplayWord from '../Multiple/DisplayWord';
+import { View, StyleSheet, Animated, TouchableWithoutFeedback, Dimensions, Platform, Text } from 'react-native';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -69,14 +68,14 @@ const AnimatedButton = ({ onPress, text }) => {
     ],
   };
 
-  const sizeH = Platform.isPad ? 0.04 : 0.06;
+  const sizeH = Platform.isPad ? 0.04 : 0.05;
 
   return (
     <TouchableWithoutFeedback onPress={handlePress}>
       <View style={styles.button}>
         <View style={styles.layer2} />
         <Animated.View style={[styles.layer1, animatedStyle]}>
-          <DisplayWord Word={text} sizeW={0.6} sizeH={sizeH} left={0} />
+          <Text style={{color: 'black',fontSize: screenWidth * sizeH, fontFamily: 'Chalkboard SE',}}>{text}</Text>
           <Animated.View style={[styles.shine, shineStyle]} />
         </Animated.View>
       </View>

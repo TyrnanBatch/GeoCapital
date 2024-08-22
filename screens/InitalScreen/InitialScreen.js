@@ -4,17 +4,11 @@ import LinearGradient from 'react-native-linear-gradient';
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
-// Conditionally import FastImage for Android only
-let FastImage;
-if (Platform.OS === 'android') {
-  FastImage = require('react-native-fast-image');
-}
-
 const InitialScreen = ({ navigation }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.navigate('Home');
-    }, 4200);
+    }, 5000);
 
     return () => clearTimeout(timer); // Cleanup the timer if the component unmounts
   }, [navigation]);
@@ -30,24 +24,15 @@ const InitialScreen = ({ navigation }) => {
         <View style={styles.topSection}>
           <SafeAreaView>
             <View style={styles.greenSection}>
-              {Platform.OS === 'android' ? (
-                <FastImage
-                  style={styles.photo}
-                  source={require('../../Photos/Map/World_Moving.gif')} // Local GIF for Android using FastImage
-                  resizeMode={FastImage.resizeMode.contain}
-                />
-              ) : ( 
                 <Image
                   source={require('../../Photos/Map/World_Moving.gif')}
                   style={styles.photo}
                   resizeMode="contain"
                 />
-              )}
             </View>
           </SafeAreaView>
         </View>
         <View style={styles.bottomSection}>
-          {/* Additional content can go here */}
         </View>
       </View>
     </>

@@ -2,12 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { View, Dimensions, Animated, StyleSheet, TouchableOpacity, Text, Image, Platform, } from 'react-native';
 import { BlurView } from '@react-native-community/blur';
 import { useNavigation } from '@react-navigation/native';
-import DisplayWord from '../Multiple/DisplayWord';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LinearGradient from 'react-native-linear-gradient';
 import FlagImage from '../Multiple/FlagImage';
 import DisplayNumber from '../Multiple/DisplayNumber';
-import DisplayWordReturnNew from '../Multiple/DisplayWordReturnNew';
 import MapPin from './MapPin'
 import LottieView from 'lottie-react-native';
 
@@ -32,31 +30,10 @@ const EndgameFour = ({
   const [onHighScore, setOnHighScore] = useState(false)
   const [storedHighScore, setStoredHighScore] = useState(0);
 
-  // const updateHighScore = async (score) => {
-  //   try {
-  //     let continentKey = 'highScoreEasy';
-  //     const storedHighScore = await AsyncStorage.getItem(continentKey);
-  //     let highScore = storedHighScore ? parseInt(storedHighScore) : 0;
-  //     if (score > highScore) {
-  //       highScore = score;
-  //       await AsyncStorage.setItem(continentKey, highScore.toString());
-  //       setOnHighScore(true);
-  //     } else {
-  //       console.log('Score is not higher than the current high score.');
-  //     }
-  //     setStoredHighScore(highScore);
-  //   } catch (error) {
-  //     console.error('Error updating high score:', error);
-  //   }
-  // };
-
-
-
   const updateHighScore = async (score) => {
     try {
       let continentKey = '';
   
-      // Determine the correct key based on the game difficulty
       if (game === 'Medium') {
         continentKey = 'highScoreMedium';
       } else if (game === 'Hard') {
@@ -70,8 +47,6 @@ const EndgameFour = ({
         highScore = score;
         await AsyncStorage.setItem(continentKey, highScore.toString());
         setOnHighScore(true);
-      } else {
-        console.log('Score is not higher than the current high score.');
       }
       setStoredHighScore(highScore);
     } catch (error) {
@@ -132,8 +107,6 @@ const EndgameFour = ({
     }
   }, []);
 
-
-
   return (
     <View style={{ width: screenWidth, height: screenHeight, position: 'absolute', zIndex: 100 }}>
         
@@ -149,14 +122,11 @@ const EndgameFour = ({
       ):(
 
 
-
-
 <BlurView style={styles.content} blurType="light" blurAmount={6} >
            {showContent2 && (
 
 <>
                 
-
 <View style={{ 
     position: 'absolute', 
     width: screenWidth * 0.902, 
@@ -177,8 +147,6 @@ const EndgameFour = ({
             zIndex: 100,
             position: 'absolute',
         }} /> )}
-
-
 
     <View style={{ 
         position: 'relative', 
@@ -210,7 +178,6 @@ colors={['#2c8ed7', '#2cd37c']}
                 height: screenWidth * 0.755, 
                 justifyContent: 'space-between', 
                 alignItems: 'center',
-                // borderRadius: screenWidth * 0.055,  
                 overflow: 'hidden' 
             }}
         >
@@ -223,111 +190,135 @@ colors={['#2c8ed7', '#2cd37c']}
 
 
 
-
-
-   <View style={{backgroundColor: '#8d5da2', width: screenWidth * 0.21, height: screenWidth * 0.38, borderRadius: screenWidth * 0.02, 
+<View style={{backgroundColor: '#8d5da2', width: screenWidth * 0.21, height: screenWidth * 0.38, borderRadius: screenWidth * 0.02, 
    justifyContent: 'space-evenly'}}>
-<View style={{ height: screenWidth * 0.2, justifyContent: 'space-between'}}>
+<View style={{ height: screenWidth * 0.23, justifyContent: 'space-between'}}>
   <View/>
-<DisplayWordReturnNew Word={capital1} sizeW={0.21} sizeH={0.022} left={1} />
+<View style={{width: '100%',  alignItems: 'center'}}>
+<Text style={{color: 'black',fontSize: screenWidth * 0.023,
+fontFamily: 'Chalkboard SE'}}>{capital1}</Text>
+</View>
 <View style={{width: screenWidth * 0.195,
     height: screenWidth * 0.14, alignSelf: 'center'}}>
         <FlagImage country={country1} />
   </View>
 </View>
-
 <View style={{ height: screenWidth * 0.09, justifyContent: 'space-evenly'}}>
-<DisplayWordReturnNew Word={country1} sizeW={0.21} sizeH={0.0175} left={1} />
+<Text style={{color: 'black',fontSize: screenWidth * 0.018, alignSelf: 'center',
+fontFamily: 'Chalkboard SE'}}>{country1}</Text>
 </View>
-
 <View style={{ height: screenWidth * 0.09, justifyContent: 'space-between'}}>
-<DisplayWord Word={' longitude: ' + longitude1} sizeW={0.21} sizeH={0.016} left={1} />
-<View/>
-        <DisplayWord Word={' latitude : ' + latitude1} sizeW={0.21} sizeH={0.016} left={1} />
+<View style={{width: '100%', }}>
+<Text style={{color: 'black',fontSize: screenWidth * 0.02,
+fontFamily: 'Chalkboard SE'}}>{'  longitude : ' + longitude1}</Text>
+</View>
+<View style={{width: '100%', }}>
+<Text style={{color: 'black',fontSize: screenWidth * 0.02,
+fontFamily: 'Chalkboard SE'}}>{'  latitude   : ' + latitude1}</Text>
+</View>
         <View/><View/><View/>
 </View>
    </View>
-
-
-
-
 
 
 
 
    <View style={{backgroundColor: '#d56c2a', width: screenWidth * 0.21, height: screenWidth * 0.38, borderRadius: screenWidth * 0.02, 
    justifyContent: 'space-evenly'}}>
-<View style={{ height: screenWidth * 0.2, justifyContent: 'space-between'}}>
+<View style={{ height: screenWidth * 0.23, justifyContent: 'space-between'}}>
   <View/>
-<DisplayWordReturnNew Word={capital2} sizeW={0.21} sizeH={0.022} left={1} />
+<View style={{width: '100%',  alignItems: 'center'}}>
+<Text style={{color: 'black',fontSize: screenWidth * 0.023,
+fontFamily: 'Chalkboard SE',}}>{capital2}</Text>
+</View>
 <View style={{width: screenWidth * 0.195,
     height: screenWidth * 0.14, alignSelf: 'center'}}>
         <FlagImage country={country2} />
   </View>
 </View>
-
 <View style={{ height: screenWidth * 0.09, justifyContent: 'space-evenly'}}>
-<DisplayWordReturnNew Word={country2} sizeW={0.21} sizeH={0.0175} left={1} />
+<Text style={{color: 'black',fontSize: screenWidth * 0.018, alignSelf: 'center',
+fontFamily: 'Chalkboard SE',}}>{country2}</Text>
 </View>
-
 <View style={{ height: screenWidth * 0.09, justifyContent: 'space-between'}}>
-<DisplayWord Word={' longitude: ' + longitude2} sizeW={0.21} sizeH={0.016} left={1} />
-<View/>
-        <DisplayWord Word={' latitude : ' + latitude2} sizeW={0.21} sizeH={0.016} left={1} />
+<View style={{width: '100%', }}>
+<Text style={{color: 'black',fontSize: screenWidth * 0.02,
+fontFamily: 'Chalkboard SE',}}>{'  longitude : ' + longitude2}</Text>
+</View>
+<View style={{width: '100%', }}>
+<Text style={{color: 'black',fontSize: screenWidth * 0.02,
+fontFamily: 'Chalkboard SE',}}>{'  latitude   : ' + latitude2}</Text>
+</View>
         <View/><View/><View/>
 </View>
    </View>
 
 
+
+
+
    <View style={{backgroundColor: '#f54b7a', width: screenWidth * 0.21, height: screenWidth * 0.38, borderRadius: screenWidth * 0.02, 
    justifyContent: 'space-evenly'}}>
-<View style={{ height: screenWidth * 0.2, justifyContent: 'space-between'}}>
+<View style={{ height: screenWidth * 0.23, justifyContent: 'space-between'}}>
   <View/>
-<DisplayWordReturnNew Word={capital3} sizeW={0.21} sizeH={0.022} left={1} />
+<View style={{width: '100%',  alignItems: 'center'}}>
+<Text style={{color: 'black',fontSize: screenWidth * 0.023,
+fontFamily: 'Chalkboard SE'}}>{capital3}</Text>
+</View>
 <View style={{width: screenWidth * 0.195,
     height: screenWidth * 0.14, alignSelf: 'center'}}>
         <FlagImage country={country3} />
   </View>
 </View>
-
 <View style={{ height: screenWidth * 0.09, justifyContent: 'space-evenly'}}>
-<DisplayWordReturnNew Word={country3} sizeW={0.21} sizeH={0.0175} left={1} />
+<Text style={{color: 'black',fontSize: screenWidth * 0.018, alignSelf: 'center',
+fontFamily: 'Chalkboard SE'}}>{country3}</Text>
 </View>
-
 <View style={{ height: screenWidth * 0.09, justifyContent: 'space-between'}}>
-<DisplayWord Word={' longitude: ' + longitude3} sizeW={0.21} sizeH={0.016} left={1} />
-<View/>
-        <DisplayWord Word={' latitude : ' + latitude3} sizeW={0.21} sizeH={0.016} left={1} />
+<View style={{width: '100%', }}>
+<Text style={{color: 'black',fontSize: screenWidth * 0.02,
+fontFamily: 'Chalkboard SE'}}>{'  longitude : ' + longitude3}</Text>
+</View>
+<View style={{width: '100%', }}>
+<Text style={{color: 'black',fontSize: screenWidth * 0.02,
+fontFamily: 'Chalkboard SE'}}>{'  latitude   : ' + latitude3}</Text>
+</View>
         <View/><View/><View/>
 </View>
    </View>
+
 
 
 
    <View style={{backgroundColor: '#d6f170', width: screenWidth * 0.21, height: screenWidth * 0.38, borderRadius: screenWidth * 0.02, 
    justifyContent: 'space-evenly'}}>
-<View style={{ height: screenWidth * 0.2, justifyContent: 'space-between'}}>
+<View style={{ height: screenWidth * 0.23, justifyContent: 'space-between'}}>
   <View/>
-<DisplayWordReturnNew Word={capital4} sizeW={0.21} sizeH={0.022} left={1} />
+<View style={{width: '100%',  alignItems: 'center'}}>
+<Text style={{color: 'black',fontSize: screenWidth * 0.023,
+fontFamily: 'Chalkboard SE'}}>{capital4}</Text>
+</View>
 <View style={{width: screenWidth * 0.195,
     height: screenWidth * 0.14, alignSelf: 'center'}}>
         <FlagImage country={country4} />
   </View>
 </View>
-
 <View style={{ height: screenWidth * 0.09, justifyContent: 'space-evenly'}}>
-<DisplayWordReturnNew Word={country4} sizeW={0.21} sizeH={0.0175} left={1} />
+<Text style={{color: 'black',fontSize: screenWidth * 0.018, alignSelf: 'center',
+fontFamily: 'Chalkboard SE'}}>{country4}</Text>
 </View>
-
 <View style={{ height: screenWidth * 0.09, justifyContent: 'space-between'}}>
-<DisplayWord Word={' longitude: ' + longitude4} sizeW={0.21} sizeH={0.016} left={1} />
-<View/>
-        <DisplayWord Word={' latitude : ' + latitude4} sizeW={0.21} sizeH={0.016} left={1} />
+<View style={{width: '100%', }}>
+<Text style={{color: 'black',fontSize: screenWidth * 0.02,
+fontFamily: 'Chalkboard SE'}}>{'  longitude : ' + longitude4}</Text>
+</View>
+<View style={{width: '100%', }}>
+<Text style={{color: 'black',fontSize: screenWidth * 0.02,
+fontFamily: 'Chalkboard SE'}}>{'  latitude   : ' + latitude4}</Text>
+</View>
         <View/><View/><View/>
 </View>
    </View>
-
-
 
 
 </View>
@@ -373,11 +364,8 @@ colors={['#2c8ed7', '#2cd37c']}
           }}
         />)}
 
-
-
     </View>
 </View>
-
 </>    
 )}
         </BlurView>

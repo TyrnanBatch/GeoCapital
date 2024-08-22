@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
-import { TouchableOpacity, View, StyleSheet, Animated, Dimensions } from 'react-native';
-import DisplayWord from '../Multiple/DisplayWord';
+import { TouchableOpacity, View, StyleSheet, Animated, Dimensions, Text } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -84,7 +83,8 @@ const CustomButton = ({ onPress, isSelected, label }) => {
             animatedStyle,
           ]}
         >
-          <DisplayWord Word={label} sizeW={0.25} sizeH={0.028} left={0} />
+          <Text style={{color: 'black',fontSize: screenWidth * 0.03, 
+fontFamily: 'Chalkboard SE',}}>{(label).toUpperCase()}</Text>
           <Animated.View style={[styles.shine, shineStyle]} />
         </Animated.View>
       </View>
@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.4,
     shadowRadius: 3,
     elevation: 3,
+    shadowColor: 'black',
   },
   layer1: {
     position: 'absolute',

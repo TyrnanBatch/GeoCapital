@@ -3,13 +3,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import { View, Dimensions, Animated, StyleSheet, TouchableOpacity, Text, Image, Platform } from 'react-native';
 import { BlurView } from '@react-native-community/blur';
 import { useNavigation } from '@react-navigation/native';
-import DisplayWord from '../Multiple/DisplayWord';
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage from the correct package
 import LinearGradient from 'react-native-linear-gradient';
 import FlagImage from '../Multiple/FlagImage';
 import LottieView from 'lottie-react-native';
 import DisplayNumber from '../Multiple/DisplayNumber';
-import DisplayWordReturnNew from '../Multiple/DisplayWordReturnNew';
 
 const CapitalGameContinents = [
   { name: 'North America', key: 'CapitalNorthAmericaHighScore' },
@@ -130,7 +128,7 @@ useEffect(() => {
     const firstTimeout = setTimeout(() => setShowFirst(true), 200); // Waits 2 seconds to show the first one
     const hideTimeout = setTimeout(() => {
       setShowFirst(false);
-    }, 5000); // All animations disappear after 5.8 seconds (2s delay + 3s visibility + 0.8s delay)
+    }, 5000);
 
     hasShownRef.current = true; // Set this to true after the animation has been shown
 
@@ -183,8 +181,6 @@ useEffect(() => {
             position: 'absolute',
         }} /> )}
 
-
-
     <View style={{ 
         position: 'relative', 
         width: '100%', 
@@ -206,7 +202,6 @@ colors={['#2c8ed7', '#2cd37c']}
                 height: '100%', 
                 justifyContent: 'space-evenly', 
                 alignItems: 'center',
-                // borderRadius: screenWidth * 0.055,  
                 overflow: 'hidden' // Keep overflow hidden here
             }}
         >
@@ -220,9 +215,12 @@ colors={['#2c8ed7', '#2cd37c']}
 
 <View style={{backgroundColor: '#8d5da2', width: screenWidth * 0.7, height: screenWidth * 0.6, borderRadius: screenWidth * 0.02, justifyContent: 'space-evenly'}}>
 
-<DisplayWordReturnNew Word={`$country: ${country}`} sizeW={0.68} sizeH={0.04} left={1} />
 
-<DisplayWordReturnNew Word={`$capital: ${capital}`} sizeW={0.68} sizeH={0.04} left={1} />
+<Text style={{color: 'black',fontSize: screenWidth * 0.04, alignSelf: 'center',
+fontFamily: 'Chalkboard SE',}}>{'COUNTRY : ' + country}</Text>
+
+<Text style={{color: 'black',fontSize: screenWidth * 0.04, alignSelf: 'center',
+fontFamily:'Chalkboard SE',}}>{'COUNTRY : ' + capital}</Text>
 
 
 <View style={{width: screenWidth * 0.50544,
@@ -230,15 +228,8 @@ colors={['#2c8ed7', '#2cd37c']}
         <FlagImage country={country} />
   </View>
 
-    
- 
     </View> 
-
-    
 </View>
-
-
-
 
 <View style={{       width: '100%', height: screenWidth * 0.14, alignItems: 'center', 
                 justifyContent: 'space-evenly', flexDirection: 'row',  }}>
@@ -276,8 +267,6 @@ colors={['#2c8ed7', '#2cd37c']}
 )}
         </BlurView>
 
-
-
       )}
     </View>
   );
@@ -304,274 +293,3 @@ const styles = StyleSheet.create({
 });
 
 export default EndgameTwo;
-
-
-
-
-
-
-
-
-
-
-
-// <BlurView style={styles.content} blurType="light" blurAmount={6} overlayColor="rgba(255, 255, 255, 0.2)">
-//            {showContent2 && (
-
-// <>
-// {onHighScore && (
-// <View style={{ position: 'absolute', width: screenWidth, height: screenHeight, zIndex: 100,  }}>
-//       {showFirst && (
-//         <LottieView
-//           source={require('../../Photos/Confettie.json')}
-//           autoPlay
-//           style={{ 
-//             width: screenWidth,
-//             position: 'absolute',
-//             height: screenWidth,
-//           }}
-//         />
-//       )}
-//     </View>
-// )}
-
-
-// <View style={{ 
-//     position: 'absolute', 
-//     height: '100%', 
-//     width: screenWidth * 0.9, 
-//     height: screenWidth * 1.2, 
-//     justifyContent: 'space-between', 
-//     alignItems: 'center', 
-// }}>
-//     <View style={{ 
-//         position: 'relative', 
-//         width: '100%', 
-//         height: screenWidth * 1.2, 
-//     }}>
-//         <LinearGradient
-
-           
-// colors={isPerfectScore ? ['#FFD700', '#FFA500', '#FF8C00'] : ['#DDA0DD', '#7B1FA2', '#9932CC']}
-            
-//             style={{ 
-//                 width: '100%', 
-//                 height: '100%', 
-//                 justifyContent: 'space-between', 
-//                 alignItems: 'center',
-//                 borderRadius: screenWidth * 0.055,  
-//                 overflow: 'hidden' // Keep overflow hidden here
-//             }}
-//         >
-
-//             {onHighScore ?  ( 
-//            <View style={{ 
-//             width: screenWidth * 0.85, 
-//             height: screenWidth * 0.1, 
-//         }}>
-//             <View style={{ 
-//                 width: screenWidth * 0.85, 
-//                 height: screenWidth * 0.2, 
-//                 position: 'absolute',
-//                 top: -screenWidth * 0.05, // Adjust this value to control how much the image goes over the top
-//                 overflow: 'visible'
-//             }}>
-//                 <Image  
-//                     resizeMode="stretch" 
-//                     source={isPerfectScore ? completedGameImage : highScoreImage}
-//                     style={{ 
-//                         width: '100%',
-//                         height: '100%',
-//                     }} 
-//                 /> 
-//             </View>
-//         </View>
-//            ):(
-//  <View/>
-// )}
-
-// <View style={{ 
-//                 width: '100%', 
-//                 height: screenWidth * 0.091, 
-//             }}>
-//       <DisplayWord Word={"country"} sizeW={0.9} sizeH={0.03} left={0} />
-//       <View style={{ 
-//         width: '20%', 
-//         height: screenWidth * 0.004, 
-//         backgroundColor: 'black', 
-//         alignSelf: 'center', 
-//         marginTop: screenWidth * 0.003,
-//         marginBottom: screenWidth * 0.01
-//     }} />
-//       <DisplayWord Word={country} sizeW={0.9} sizeH={0.045} left={0} />
-//       <View style={{  marginBottom: screenWidth * 0.02
-//     }} />
-//             </View>
-
-
-
-// <View style={{ 
-//                 width: '100%', 
-//                 height: screenWidth * 0.091,   
-//             }}>
-//       <DisplayWord Word={"capital"} sizeW={0.9} sizeH={0.03} left={0} />
-//       <View style={{ 
-//         width: '20%', 
-//         height: screenWidth * 0.004, 
-//         backgroundColor: 'black', 
-//         alignSelf: 'center', 
-//         marginTop: screenWidth * 0.003,
-//         marginBottom: screenWidth * 0.01
-//     }} />
-//       <DisplayWord Word={capital} sizeW={0.9} sizeH={0.045} left={0} />
-//             </View>
-
-//             <View style={{ 
-//                 width: '100%', 
-//                 height: screenWidth * 0.336, 
-//                 alignItems: 'center'
-//             }}>
-//                <View style={{width: screenWidth * 0.48,
-//     height: screenWidth * 0.336,}}>
-//         <FlagImage country={country} />
-//   </View>
-//             </View>
-            
-//             <View style={{ 
-//                 width: '100%', 
-//                 height: screenWidth * 0.15, 
-//                 flexDirection: 'row', 
-//                 justifyContent: 'space-evenly',
-//             }}>
-
-
-//               <View style={{ 
-//                 width: '25%', 
-//                 height: screenWidth * 0.15, 
-//                 backgroundColor: 'white',
-//                 borderRadius: screenWidth * 0.015,
-//                 justifyContent: 'space-evenly'
-//             }}>
-
-// <DisplayWord Word={'game'} sizeW={0.223} sizeH={0.02} left={0} />
-// <View style={{ 
-//         width: '96%', 
-//         height: screenWidth * 0.004, 
-//         backgroundColor: 'black', 
-//         alignSelf: 'center', 
-//         marginBottom: screenWidth * 0.005,
-//     }} />
-
-
-// {game === 'CapitalsGame' ? (
-//         <DisplayWord Word={'countries and capitals'} sizeW={0.223} sizeH={0.016} left={0} />
-//       ) : game === 'FlagGame' ? (
-//         <DisplayWord Word={'countrie flags game'} sizeW={0.223} sizeH={0.016} left={0} />
-//       ) : (
-//         <DisplayWord Word={'countrie location game'} sizeW={0.223} sizeH={0.016} left={0} />
-//       )}
-
-
-
-// <View style={{ 
-//         alignSelf: 'center', 
-//         marginBottom: screenWidth * 0.02,
-//     }} />
-// <DisplayWord Word={'location'} sizeW={0.223} sizeH={0.02} left={0} />
-// <View style={{ 
-//         width: '96%', 
-//         height: screenWidth * 0.004, 
-//         backgroundColor: 'black', 
-//         alignSelf: 'center', 
-//         marginBottom: screenWidth * 0.005,
-//     }} />
-// <DisplayWord Word={continent} sizeW={0.223} sizeH={0.016} left={0} />
-
-
-//             </View>
-
-//             <View style={{ 
-//                 width: '40%', 
-//                 height: screenWidth * 0.15, 
-//                 backgroundColor: 'white', 
-//                 justifyContent: 'center',
-//                 borderRadius: screenWidth * 0.015,
-//             }}>
-//               <DisplayWord Word={(score + '/' + totalScore).toString()} sizeW={0.36} sizeH={0.077} left={0} />
-//             </View>
-
-// <View style={{ 
-//                 width: '25%', 
-//                 height: screenWidth * 0.15, 
-//                 backgroundColor: 'white',
-//                 borderRadius: screenWidth * 0.015,
-//                 justifyContent: 'space-evenly'
-//             }}>
-//                <DisplayWord Word={'current high score'} sizeW={0.225} sizeH={0.018} left={0} />
-
-//                <View style={{ 
-//         width: '96%', 
-//         height: screenWidth * 0.004, 
-//         backgroundColor: 'black', 
-//         alignSelf: 'center', 
-//         marginBottom: screenWidth * 0.004,
-//     }} />
-
-//                <DisplayWord Word={storedHighScore.toString()} sizeW={0.225} sizeH={0.1} left={0} />
-//             </View>
-
-
-//             </View>
-
-//             <View style={{ 
-//                 width: '100%', 
-//                 height: screenWidth * 0.14, 
-//                 alignItems: 'center', 
-//                 justifyContent: 'space-evenly', 
-//                 flexDirection: 'row', 
-//             }}>
-
-
-//             <TouchableOpacity onPress={handleNavigateHome}>
-//                 <Image
-//                     source={require('../../Photos/Done.png')}
-//                     style={{ 
-//                         width: screenWidth * 0.32, 
-//                         height: screenWidth * 0.14 
-//                     }}
-//                 />
-//             </TouchableOpacity>
-//             </View>
-//             <View/>
-//         </LinearGradient>
-
-//       {onHighScore ?  ( 
-//         <View style={{ 
-//             position: 'absolute', 
-//             top: -screenWidth * 0.05, // Adjust this value to control how much the image goes over the top
-//             width: screenWidth * 0.85,
-//             height: screenWidth * 0.2,
-//             marginLeft: screenWidth * 0.025,
-//             justifyContent: 'center',
-//             alignItems: 'center',
-//         }}>
-//             <Image  
-//                 resizeMode="stretch" 
-//                 source={isPerfectScore ? completedGameImage : highScoreImage} 
-//                 style={{ 
-//                     width: '100%',
-//                     height: '100%',
-//                 }} 
-//             /> 
-//         </View>
-//            ):(
-// <></>
-// )}
-
-
-//     </View>
-// </View>
-
-// </>
-// )}
-//         </BlurView>

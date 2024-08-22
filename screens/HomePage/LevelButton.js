@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
-import { View, StyleSheet, Dimensions, Pressable, Alert, Image, Platform } from 'react-native';
+import { View, StyleSheet, Dimensions, Pressable, Alert, Image, Platform, Text } from 'react-native';
 import Animated, { interpolate, useAnimatedStyle, useSharedValue, withTiming, withDelay } from 'react-native-reanimated';
-import DisplayWord from '../Multiple/DisplayWord';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const { height: screenHeight, width: screenWidth } = Dimensions.get('window');
@@ -69,12 +68,14 @@ const LevelButton = ({ setSelectedLevel, selectedLevel, easyScore, mediumScore }
       <Pressable
         onPress={handlePress}
         style={({ pressed }) => pressed ? [styles.plusButton, { transform: [{ scale: 0.9 }] }] : [styles.plusButton]}>
-        <DisplayWord Word={'level'} sizeW={0.2} sizeH={0.038} left={0} />
+         <Text style={{color: 'black',fontSize: screenWidth * 0.04, alignSelf: 'center',marginTop: -screenWidth * 0.01,
+fontFamily: 'Chalkboard SE',}}>{'LEVEL'}</Text>
       </Pressable>
       <AnimatedPressable style={[styles.button, rCameraAnimateStyles, getButtonStyle('Hard')]}>
          {mediumScore >= 10 ? ( 
           <TouchableOpacity onPress={() => setSelectedLevel('Hard')}>
-            <DisplayWord Word={'Hard'} sizeW={0.2} sizeH={0.042} left={0} />
+             <Text style={{color: 'black',fontSize: screenWidth * 0.04, alignSelf: 'center',marginTop: -screenWidth * 0.01,
+fontFamily: 'Chalkboard SE',}}>{'HARD'}</Text>
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
@@ -91,7 +92,8 @@ const LevelButton = ({ setSelectedLevel, selectedLevel, easyScore, mediumScore }
       <AnimatedPressable style={[styles.button, rUploadAnimateStyles, getButtonStyle('Medium')]}>
         {easyScore >= 10 ? ( 
           <TouchableOpacity onPress={() => setSelectedLevel('Medium')}>
-            <DisplayWord Word={'Medium'} sizeW={0.2} sizeH={0.042} left={0} />
+             <Text style={{color: 'black',fontSize: screenWidth * 0.04, alignSelf: 'center',marginTop: -screenWidth * 0.01,
+fontFamily: 'Chalkboard SE',}}>{'MEDIUM'}</Text>
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
@@ -107,7 +109,10 @@ const LevelButton = ({ setSelectedLevel, selectedLevel, easyScore, mediumScore }
       </AnimatedPressable>
       <AnimatedPressable style={[styles.button, rCloudAnimateStyles, getButtonStyle('Easy')]}>
         <TouchableOpacity onPress={() => setSelectedLevel('Easy')}>
-          <DisplayWord Word={'Easy'} sizeW={0.2} sizeH={0.042} left={0} />
+
+          <Text style={{color: 'black',fontSize: screenWidth * 0.04, alignSelf: 'center',marginTop: -screenWidth * 0.01,
+fontFamily: 'Chalkboard SE',}}>{'EASY'}</Text>
+
         </TouchableOpacity>
       </AnimatedPressable>
     </View>
@@ -131,11 +136,6 @@ const styles = StyleSheet.create({
     borderRadius: screenWidth * 0.3,
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: 'black',
-    shadowOffset: { width: screenWidth * 0.002, height: screenWidth * 0.002 },
-    shadowOpacity: 0.8,
-    shadowRadius: screenWidth * 0.014,
-    elevation: 10,
   },
   button: {
     width: screenWidth * 0.2,
@@ -148,11 +148,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     position: 'absolute',
     zIndex: -1,
-    shadowColor: 'black',
-    shadowOffset: { width: screenWidth * 0.002, height: screenWidth * 0.002 },
-    shadowOpacity: 0.8,
-    shadowRadius: screenWidth * 0.014,
-    elevation: 10,
   },
   lockedButton: {
     justifyContent: 'space-evenly',
@@ -165,5 +160,3 @@ const styles = StyleSheet.create({
 });
 
 export default LevelButton;
-
-

@@ -2,14 +2,13 @@ import React, { useState, useCallback } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, Dimensions, Image, Platform  } from 'react-native';
 import RadarChartPart from './RadarChartPart';
 import CustomButton from './CustomButton';
-import DisplayWord from '../Multiple/DisplayWord';
 import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 const InsideView = ({ toggleSlide2 }) => {
-  const [displayMode, setDisplayMode] = useState('all'); // 'green', 'blue', 'orange', or 'all'
+  const [displayMode, setDisplayMode] = useState('all');
 
   const isPad = Platform.isPad;
 
@@ -52,7 +51,8 @@ const InsideView = ({ toggleSlide2 }) => {
       <View style={styles.greenSection}>
 <View style={{width: screenWidth, borderBottomWidth: screenWidth * 0.006,borderBottomColor: 'black',height: screenWidth * 0.125,flexDirection: 'row', }}>
 <View style={{ width: screenWidth * 0.5, height: '100%', marginLeft: screenWidth * 0.25, justifyContent: 'center', alignItems: 'center'}}>
-<DisplayWord Word={'stats page'} sizeW={0.6} sizeH={0.07} left={0} />
+<Text style={{color: 'black',fontSize: screenWidth * 0.07, alignSelf: 'center', 
+                     marginTop: -screenWidth * 0.01,    fontFamily: 'Chalkboard SE', }} >{'STATS PAGE'}</Text> 
 </View>
  <TouchableOpacity style={{ postion: 'absoulte',top: 0,width: screenWidth * 0.25, marginLeft: screenWidth * 0.02,height: screenWidth * 0.12, justifyContent: 'center' }} onPress={toggleSlide2}>
           <Image 
@@ -63,11 +63,6 @@ const InsideView = ({ toggleSlide2 }) => {
         </TouchableOpacity>  
 </View>
         <View style={{ flex: 1, width: screenWidth, justifyContent: 'space-evenly', alignItems: 'center' }}>
-
-          {/* <View style={{ width: '100%', height: isPad ? screenWidth * 0.02 : screenWidth * 0.02}}>
-          <DisplayWord Word={'this is not good enough "smh" !!'} sizeW={1} sizeH={isPad ? 0.02 : 0.02} left={0} />
-          </View> */}
-          
           <View style={{ width: screenWidth, height: Platform.isPad ? screenWidth * 0.52 : screenWidth * 0.76 }}>
             <RadarChartPart displayMode={displayMode} />
           </View>
@@ -76,30 +71,40 @@ const InsideView = ({ toggleSlide2 }) => {
             <CustomButton text="countries and capitals" color1="#fd6f72" color2="#F32F2F" onPress={() => handleButtonPress('blue')} />
             <CustomButton text="location game" color1="#ffe368" color2="#F2C81F" onPress={() => handleButtonPress('orange')} />
           </View>
-
-
-
-
           <View style={{  width: screenWidth, height: screenWidth * 0.2, flexDirection: 'row' }}>
 
 <View style={{width: screenWidth * 0.55, height: screenWidth * 0.2, borderRightWidth: screenWidth * 0.006, borderRightColor: 'black', alignItems: 'center'}}>
 <View style={{width: '80%', height: screenWidth * 0.06,  justifyContent: 'center', borderBottomColor: 'black',borderBottomWidth: screenWidth * 0.006,}}>
-  <DisplayWord Word={'main games'} sizeW={0.435} sizeH={0.045} left={0} />
+
+  <Text style={{color: 'black',fontSize: screenWidth * 0.05, alignSelf: 'center', 
+                        marginTop: -screenWidth * 0.02, fontFamily: 'Chalkboard SE', }} >{'MAIN GAME'}</Text> 
   </View>
-  <View style={{width: '100%', height: screenWidth * 0.14,  justifyContent: 'space-evenly', alignItems: 'center', }}>
-  <DisplayWord Word={'Easy mode    ' + highScores['highScoreEasy']} sizeW={0.4} sizeH={0.032} left={0} /> 
-  <DisplayWord Word={'Medium mode  ' + highScores['highScoreMedium']} sizeW={0.4} sizeH={0.032} left={0} />
-  <DisplayWord Word={'hard mode    ' + highScores['highScoreHard']} sizeW={0.4} sizeH={0.032} left={0} /> 
+  <View style={{width: '100%', height: screenWidth * 0.14,  justifyContent: 'space-evenly',  }}>
+<Text style={{color: 'black',fontSize: screenWidth * 0.04, 
+                       fontFamily: 'Chalkboard SE', }} >{'        EASY          ' + highScores['highScoreEasy']}</Text> 
+                       <Text style={{color: 'black',fontSize: screenWidth * 0.04, 
+                         fontFamily: 'Chalkboard SE', }} >{'        MEDIUM      ' + highScores['highScoreMedium']}</Text> 
+<Text style={{color: 'black',fontSize: screenWidth * 0.04, 
+                       fontFamily: 'Chalkboard SE', }} >{'        HARD          ' + highScores['highScoreHard']}</Text> 
+
+
+
   </View>
 </View>
 <View style={{width: screenWidth * 0.45, height: screenWidth * 0.2, alignItems: 'center'}}>
   <View style={{width: '80%', height: screenWidth * 0.06,  justifyContent: 'center', borderBottomColor: 'black',borderBottomWidth: screenWidth * 0.006,}}>
-  <DisplayWord Word={'other games'} sizeW={0.36} sizeH={0.045} left={0} />
+  <Text style={{color: 'black',fontSize: screenWidth * 0.05, alignSelf: 'center', 
+                        marginTop: -screenWidth * 0.02, fontFamily: 'Chalkboard SE', }} >{'OTHER GAMES'}</Text> 
   </View>
-  <View style={{width: '100%', height: screenWidth * 0.14,  justifyContent: 'space-evenly', alignItems: 'center',}}>
-  <DisplayWord Word={'population  ' + highScores['highScorePopulationGame']} sizeW={0.45} sizeH={0.03} left={0} />
-  <DisplayWord Word={'size        ' + highScores['highScoreSizeGame']} sizeW={0.45} sizeH={0.03} left={0} />
-  <DisplayWord Word={' '} sizeW={0.45} sizeH={0.03} left={0} />
+  <View style={{width: '100%', height: screenWidth * 0.14,  justifyContent: 'space-evenly', }}>
+
+  <Text style={{color: 'black',fontSize: screenWidth * 0.04, 
+                      marginTop: -screenWidth * 0.01,   fontFamily: 'Chalkboard SE', }} >{'     POPULATION   ' + highScores['highScorePopulationGame']}</Text> 
+  <Text style={{color: 'black',fontSize: screenWidth * 0.04, 
+                      marginTop: -screenWidth * 0.02,   fontFamily: 'Chalkboard SE', }} >{'     SIZE             ' + highScores['highScoreSizeGame']}</Text> 
+                      <View style={{height: screenWidth * 0.025}}/>
+
+
   </View>
 </View>
 

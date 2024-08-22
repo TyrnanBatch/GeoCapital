@@ -3,12 +3,6 @@ import { View, Text, StyleSheet, SafeAreaView, Image, Dimensions, Platform } fro
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
-// Conditionally import FastImage for Android only
-let FastImage;
-if (Platform.OS === 'android') {
-  FastImage = require('react-native-fast-image');
-}
-
 const InsideTopView = () => {
   return (
     <SafeAreaView>
@@ -16,23 +10,14 @@ const InsideTopView = () => {
         <Image 
           source={require('../../Photos/Map/WorldMapFinal.png')} // local photo
           style={styles.photo}
-          resizeMode="contain" // make the image fit the screen
+          resizeMode="contain" 
         />
-        {Platform.OS === 'android' ? (
-          FastImage ? (
-            <FastImage 
-              style={styles.photo}
-              source={require('../../Photos/Map/MovingPins.gif')} // Local GIF for Android using FastImage
-              resizeMode={FastImage.resizeMode.contain}
-            />
-          ) : null // In case FastImage is undefined for some reason
-        ) : (
           <Image
-            source={require('../../Photos/Map/MovingPins.gif')} // Local GIF for iOS using the default Image component
+            source={require('../../Photos/Map/MovingPins.gif')} 
             style={styles.photo}
             resizeMode="contain"
           />
-        )}
+        
       </View>
     </SafeAreaView>
   );

@@ -1,8 +1,7 @@
 // export default RadarChartPart;
 import React, { useState, useEffect } from 'react';
-import { View, Dimensions, Platform } from 'react-native';
+import { View, Dimensions, Platform, Text } from 'react-native';
 import Svg, { Polygon, Line, Circle } from 'react-native-svg';
-import DisplayWord from '../Multiple/DisplayWord';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -364,169 +363,153 @@ useFocusEffect(
 
       <View
         style={{
-          left: Platform.isPad ? screenWidth * 0.12 : screenWidth * 0.083,
-          top: Platform.isPad ? screenWidth * 0.0 : screenWidth * 0.00,
+          left: Platform.isPad ? screenWidth * 0.095 : screenWidth * 0.06,
+          top: Platform.isPad ? screenWidth * 0.0 : 0,
           backgroundColor: 'pink',
           position: 'absolute',
           borderRadius: screenWidth * 0.08,
           padding: screenWidth * 0.01
         }}
       >
-        <DisplayWord Word={'South America'} sizeW={0.18} sizeH={0.02} left={0} />
+        <Text style={{color: 'black',fontSize: screenWidth * 0.024, alignSelf: 'center', 
+                     marginTop: -screenWidth * 0.01, fontFamily: 'Chalkboard SE', }} >{' SOUTH AMERICA '}</Text> 
       </View>
 
       <View
         style={{
           left: Platform.isPad ? screenWidth * 0.68 : screenWidth * 0.72,
-          top: Platform.isPad ? screenWidth * 0.0 : screenWidth * 0.0,
+          top: Platform.isPad ? screenWidth * 0.0 : 0,
           backgroundColor: 'pink',
           position: 'absolute',
           borderRadius: screenWidth * 0.08,
           padding: screenWidth * 0.01
         }}
       >
-        <DisplayWord Word={'North America'} sizeW={0.18} sizeH={0.02} left={0} />
+        <Text style={{color: 'black',fontSize: screenWidth * 0.024, alignSelf: 'center', 
+                     marginTop: -screenWidth * 0.01, fontFamily: 'Chalkboard SE', }} >{' NORTH AMERICA '}</Text> 
       </View>
 
       <View
         style={{
-          left: Platform.isPad ? screenWidth * 0.81 : screenWidth * 0.875,
-          top: Platform.isPad ? screenWidth * 0.24 : screenWidth * 0.31,
+          left: Platform.isPad ? screenWidth * 0.81 : screenWidth * 0.865,
+          top: Platform.isPad ? screenWidth * 0.24 : screenWidth * 0.29,
           backgroundColor: 'pink',
           position: 'absolute',
           borderRadius: screenWidth * 0.08,
           padding: screenWidth * 0.01
         }}
       >
-        <DisplayWord Word={'Asia'} sizeW={0.1} sizeH={0.02} left={0} />
+        <Text style={{color: 'black',fontSize: screenWidth * 0.024, alignSelf: 'center', 
+                     marginTop: -screenWidth * 0.01, fontFamily: 'Chalkboard SE', }} >{'  ASIA  '}</Text> 
       </View>
 
       <View
         style={{
-          left: Platform.isPad ? screenWidth * 0.07 : screenWidth * 0.005,
-          top: Platform.isPad ? screenWidth * 0.24 : screenWidth * 0.31,
+          left: Platform.isPad ? screenWidth * 0.065 : screenWidth * 0.005,
+          top: Platform.isPad ? screenWidth * 0.24 : screenWidth * 0.29,
           backgroundColor: 'pink',
           position: 'absolute',
           borderRadius: screenWidth * 0.08,
           padding: screenWidth * 0.01
         }}
       >
-        <DisplayWord Word={'Europe'} sizeW={0.1} sizeH={0.02} left={0} />
+          <Text style={{color: 'black',fontSize: screenWidth * 0.024, alignSelf: 'center', 
+                     marginTop: -screenWidth * 0.01, fontFamily: 'Chalkboard SE', }} >{' EUROPE '}</Text> 
       </View>
 
       <View
         style={{
-          left: Platform.isPad ? screenWidth * 0.16 : screenWidth * 0.12,
-          top: Platform.isPad ? screenWidth * 0.48 : screenWidth * 0.72,
+          left: Platform.isPad ? screenWidth * 0.2 : screenWidth * 0.14,
+          top: Platform.isPad ? screenWidth * 0.47 : screenWidth * 0.68,
           backgroundColor: 'pink',
           position: 'absolute',
           borderRadius: screenWidth * 0.08,
           padding: screenWidth * 0.01
         }}
       >
-        <DisplayWord Word={'Africa'} sizeW={0.14} sizeH={0.02} left={0} />
+        <Text style={{color: 'black',fontSize: screenWidth * 0.024, alignSelf: 'center', 
+                     marginTop: -screenWidth * 0.01, fontFamily: 'Chalkboard SE', }} >{' AFRICA '}</Text> 
       </View>
-
       <View
         style={{
-          left: Platform.isPad ? screenWidth * 0.68 : screenWidth * 0.72,
-          top: Platform.isPad ? screenWidth * 0.48 : screenWidth * 0.72,
+          left: Platform.isPad ? screenWidth * 0.68 : screenWidth * 0.74,
+          top: Platform.isPad ? screenWidth * 0.47 : screenWidth * 0.68,
           backgroundColor: 'pink',
           position: 'absolute',
           borderRadius: screenWidth * 0.08,
           padding: screenWidth * 0.01
         }}
       >
-        <DisplayWord Word={'Oceania'} sizeW={0.14} sizeH={0.02} left={0} />
+          <Text style={{color: 'black',fontSize: screenWidth * 0.024, alignSelf: 'center', 
+                     marginTop: -screenWidth * 0.01, fontFamily: 'Chalkboard SE', }} >{' OCEANIA '}</Text> 
       </View>
 
       <View
         style={{
-          left: Platform.isPad ? screenWidth * 0.455 : screenWidth * 0.48,
-          top: Platform.isPad ? screenWidth * 0.255 : screenWidth * 0.37,
+          left: Platform.isPad ? screenWidth * 0.53 : screenWidth * 0.55,
+          top: Platform.isPad ? screenWidth * 0.257 : screenWidth * 0.38,
           position: 'absolute',
           borderRadius: screenWidth * 0.08,
           padding: screenWidth * 0.01
         }}
       >
-        <DisplayWord Word={'20%'} sizeW={0.14} sizeH={0.015} left={0} />
+        <Text style={{color: 'black',fontSize: screenWidth * 0.015, alignSelf: 'center', 
+                     marginTop: -screenWidth * 0.01, fontFamily: 'Chalkboard SE', }} >{'20%'}</Text> 
       </View>
 
       <View
         style={{
-          left: Platform.isPad ? screenWidth * 0.513 : screenWidth * 0.56,
-          top: Platform.isPad ? screenWidth * 0.255 : screenWidth * 0.37,
+          left: Platform.isPad ? screenWidth * 0.59 : screenWidth * 0.63,
+          top: Platform.isPad ? screenWidth * 0.257 : screenWidth * 0.38,
           position: 'absolute',
           borderRadius: screenWidth * 0.08,
           padding: screenWidth * 0.01
         }}
       >
-        <DisplayWord Word={'40%'} sizeW={0.14} sizeH={0.015} left={0} />
+         <Text style={{color: 'black',fontSize: screenWidth * 0.015, alignSelf: 'center', 
+                     marginTop: -screenWidth * 0.01, fontFamily: 'Chalkboard SE', }} >{'40%'}</Text> 
       </View>
 
       <View
         style={{
-          left: Platform.isPad ? screenWidth * 0.57 : screenWidth * 0.64,
-          top: Platform.isPad ? screenWidth * 0.255 : screenWidth * 0.37,
+          left: Platform.isPad ? screenWidth * 0.65 : screenWidth * 0.71,
+          top: Platform.isPad ? screenWidth * 0.257 : screenWidth * 0.38,
           position: 'absolute',
           borderRadius: screenWidth * 0.08,
           padding: screenWidth * 0.01
         }}
       >
-        <DisplayWord Word={'60%'} sizeW={0.14} sizeH={0.015} left={0} />
+        <Text style={{color: 'black',fontSize: screenWidth * 0.015, alignSelf: 'center', 
+                     marginTop: -screenWidth * 0.01, fontFamily: 'Chalkboard SE', }} >{'60%'}</Text> 
       </View>
 
       <View
         style={{
-          left: Platform.isPad ? screenWidth * 0.63 : screenWidth * 0.71,
-          top: Platform.isPad ? screenWidth * 0.255 : screenWidth * 0.37,
+          left: Platform.isPad ? screenWidth * 0.71 : screenWidth * 0.785,
+          top: Platform.isPad ? screenWidth * 0.257 : screenWidth * 0.38,
           position: 'absolute',
           borderRadius: screenWidth * 0.08,
           padding: screenWidth * 0.01
         }}
       >
-        <DisplayWord Word={'80%'} sizeW={0.14} sizeH={0.015} left={0} />
+         <Text style={{color: 'black',fontSize: screenWidth * 0.015, alignSelf: 'center', 
+                     marginTop: -screenWidth * 0.01, fontFamily: 'Chalkboard SE', }} >{'80%'}</Text> 
       </View>
 
       <View
         style={{
-          left: Platform.isPad ? screenWidth * 0.69 : screenWidth * 0.78,
-          top: Platform.isPad ? screenWidth * 0.255 : screenWidth * 0.37,
+          left: Platform.isPad ? screenWidth * 0.76 : screenWidth * 0.85,
+          top: Platform.isPad ? screenWidth * 0.257 : screenWidth * 0.38,
           position: 'absolute',
           borderRadius: screenWidth * 0.08,
           padding: screenWidth * 0.01
         }}
       >
-        <DisplayWord Word={'100%'} sizeW={0.14} sizeH={0.015} left={0} />
+       <Text style={{color: 'black',fontSize: screenWidth * 0.015, alignSelf: 'center', 
+                     marginTop: -screenWidth * 0.01, fontFamily: 'Chalkboard SE', }} >{'100%'}</Text> 
       </View>
     </View>
   );
 };
 
 export default RadarChartPart;
-
-
-
-
-
-
-// const [capitalNorthAmericaHighScore, setCapitalNorthAmericaHighScore] = useState(23);
-// const [capitalSouthAmericaHighScore, setCapitalSouthAmericaHighScore] = useState(8);
-// const [capitalEuropeHighScore, setCapitalEuropeHighScore] = useState(9);
-// const [capitalAsiaHighScore, setCapitalAsiaHighScore] = useState(45);
-// const [capitalAfricaHighScore, setCapitalAfricaHighScore] = useState(5);
-// const [capitalOceaniaHighScore, setCapitalOceaniaHighScore] = useState(8);
-
-// const [flagNorthAmericaHighScore, setFlagNorthAmericaHighScore] = useState(7);
-// const [flagSouthAmericaHighScore, setFlagSouthAmericaHighScore] = useState(6);
-// const [flagEuropeHighScore, setFlagEuropeHighScore] = useState(39);
-// const [flagAsiaHighScore, setFlagAsiaHighScore] = useState(46);
-// const [flagAfricaHighScore, setFlagAfricaHighScore] = useState(45);
-// const [flagOceaniaHighScore, setFlagOceaniaHighScore] = useState(14);
-
-// const [locationNorthAmericaHighScore, setLocationNorthAmericaHighScore] = useState(8);
-// const [locationSouthAmericaHighScore, setLocationSouthAmericaHighScore] = useState(12);
-// const [locationEuropeHighScore, setLocationEuropeHighScore] = useState(16);
-// const [locationAsiaHighScore, setLocationAsiaHighScore] = useState(15);
-// const [locationAfricaHighScore, setLocationAfricaHighScore] = useState(50);
-// const [locationOceaniaHighScore, setLocationOceaniaHighScore] = useState(10);
