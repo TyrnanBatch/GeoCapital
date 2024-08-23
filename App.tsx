@@ -31,15 +31,7 @@ const Stack = createSharedElementStackNavigator();
 export default function App() {
 
 
-  // useEffect(() => {
-  //   // Lock orientation to portrait mode when the component is mounted
-  //   Orientation.lockToPortrait();
 
-  //   // Clean up the effect by unlocking the orientation on unmount
-  //   return () => {
-  //     Orientation.unlockAllOrientations();
-  //   };
-  // }, []);
 
 
   return (

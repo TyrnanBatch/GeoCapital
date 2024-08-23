@@ -97,11 +97,6 @@ const styles = StyleSheet.create({
     position: 'relative',
     height: screenWidth * 0.057,
     borderRadius: screenWidth * 0.2,
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 0.4,
-    shadowRadius: 3,
-    elevation: 3,
-    shadowColor: 'black',
   },
   layer1: {
     position: 'absolute',
@@ -121,6 +116,11 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     borderRadius: screenWidth * 0.02,
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.4,
+    shadowRadius: 3,
+    elevation: 3,
+    shadowColor: 'black',
   },
   shine: {
     position: 'absolute',
