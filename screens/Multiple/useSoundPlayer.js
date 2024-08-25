@@ -46,11 +46,7 @@ const useSoundPlayer = () => {
     };
 
     const playSoundWrong = () => {
-        try {
-            Vibration.vibrate(50);
-        } catch (error) {
-            console.log(error);
-        }
+//        Vibration.vibrate(50);
         if (soundWrong) {
             soundWrong.play((success) => {
                 if (!success) {
