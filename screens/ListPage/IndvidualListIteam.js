@@ -51,7 +51,7 @@ const filterData = (data, filterBy) => {
 
 // Main component
 const IndvidualListIteam = ({ SortByVal, SortByVal2 }) => {
-    const navigation = useNavigation(); 
+    const navigation = useNavigation();
 
     const handleButtonPress = useCallback((country) => {
         navigation.navigate('CapitalInfo', { country: country });
@@ -67,7 +67,7 @@ const IndvidualListIteam = ({ SortByVal, SortByVal2 }) => {
             width: width,
             height: width * 0.16,
             flexDirection: 'row',
-            backgroundColor: index % 2 === 0 ? 'rgb(220, 250, 250)' : 'rgb(255, 255, 255)', 
+            backgroundColor: index % 2 === 0 ? 'rgb(220, 250, 250)' : 'rgb(255, 255, 255)',
         }}>
             <View style={{ width: width * 0.25, height: width * 0.16, flexDirection: 'row', justifyContent: 'center', alignItems: 'center',  }}>
                 <View style={{ width: width * 0.05, justifyContent: 'center', alignItems: 'center'}}>
@@ -76,7 +76,7 @@ const IndvidualListIteam = ({ SortByVal, SortByVal2 }) => {
                     </Text>
                 </View>
                 <View style={{width: width * 0.2, height: width * 0.14, }}>
-                    <FlagImage country={item.country} /> 
+                    <FlagImage country={item.country} />
                 </View>
             </View>
             <View style={{ width: width * 0.4, height: width * 0.16, justifyContent: 'center', alignItems: 'center',}}>
@@ -84,12 +84,12 @@ const IndvidualListIteam = ({ SortByVal, SortByVal2 }) => {
                     <Text style={{color: 'black',fontSize: width * 0.03, fontFamily: 'Chalkboard SE',}}>
                         {item.capital}
                     </Text>
-                </View> 
+                </View>
                 <View style={{ width: width * 0.38, marginLeft: width * 0.02, height: width * 0.055, justifyContent: 'center'}}>
                     <Text style={{color: 'black', fontSize: width * 0.022, fontFamily: 'Chalkboard SE',}}>
                         {item.country}
                     </Text>
-                </View> 
+                </View>
             </View>
             <View style={{ width: width * 0.16, height: width * 0.16, justifyContent: 'center', alignItems: 'center', }}>
                 <Text style={{color: 'black',fontSize: width * 0.022, fontFamily: 'Chalkboard SE',}}>
@@ -98,7 +98,7 @@ const IndvidualListIteam = ({ SortByVal, SortByVal2 }) => {
             </View>
             <View style={{ width: width * 0.18, height: width * 0.16, justifyContent: 'center', alignItems: 'center',  }}>
                 <TouchableOpacity onPress={() => handleButtonPress(item.country)} style={{  width: '100%',justifyContent: 'center', alignItems: 'center',  }}>
-                    <Image 
+                    <Image
                         source={require('../../Photos/More.png')} // local photo
                         style={{width: '80%', height: '100%'}}
                         resizeMode="contain"
