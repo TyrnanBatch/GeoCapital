@@ -7,83 +7,83 @@ const { width: screenWidth } = Dimensions.get('window');
 
 const CardTest = ({ name, backgroundColor, backgroundColor2, toggleGif,toggleGifTwo }) => {
 
-  const renderCarousel = (name) => {
-    switch (name) {
-      case 'CapitalsGame':
-      case 'FlagGame':
-      case 'LocationGame':
-        return <CarouselCardOne name={name} toggleGif={toggleGif} />;
-      case 'PopulationGame':
-      case 'SizeGame':
-        return <CarouselCardTwo name={name} toggleGifTwo={toggleGifTwo} />;
-      default:
-        return null;
-    }
-  };
+    const renderCarousel = (name) => {
+        switch (name) {
+            case 'CapitalsGame':
+            case 'FlagGame':
+            case 'LocationGame':
+                return <CarouselCardOne name={name} toggleGif={toggleGif} />;
+            case 'PopulationGame':
+            case 'SizeGame':
+                return <CarouselCardTwo name={name} toggleGifTwo={toggleGifTwo} />;
+            default:
+                return null;
+        }
+    };
 
-  return (
-    <View style={styles.container}>
-      <View style={[styles.cardShadow, { backgroundColor: backgroundColor2 }]}></View>
-      <View style={[styles.card, { backgroundColor: backgroundColor }]}>
-        {renderCarousel(name)}
-      </View>
-      <View style={[styles.topRightEffect, { backgroundColor: backgroundColor2 }]}></View>
-      <View style={[styles.bottomLeftEffect, { backgroundColor: backgroundColor2 }]}></View>
-    </View>
-  );
+    return (
+        <View style={styles.container}>
+            <View style={[styles.cardShadow, { backgroundColor: backgroundColor2 }]}></View>
+            <View style={[styles.card, { backgroundColor: backgroundColor }]}>
+                {renderCarousel(name)}
+            </View>
+            <View style={[styles.topRightEffect, { backgroundColor: backgroundColor2 }]}></View>
+            <View style={[styles.bottomLeftEffect, { backgroundColor: backgroundColor2 }]}></View>
+        </View>
+    );
 };
 
 
 
 const styles = StyleSheet.create({
-  container: {
-    width: screenWidth * 0.75,
-    height: screenWidth * 1.2,
-  },
-  card: {
-    position: 'absolute',
-    width: screenWidth * 0.72,
-    height: screenWidth * 1.17,
-    borderWidth: screenWidth * 0.004,
-    borderColor: 'black',
-    zIndex: 100,
-    overflow: 'hidden', 
-    borderRadius: screenWidth * 0.04,
-    top: 0,
-    left: 0,
-  },
-  cardShadow: {
-    position: 'absolute',
-    width: screenWidth * 0.72,
-    height: screenWidth * 1.17,
-    borderWidth: screenWidth * 0.004,
-    borderColor: 'black',
-    borderRadius: screenWidth * 0.04,
-    top: screenWidth * 0.03,
-    left: screenWidth * 0.03,
-  },
-  topRightEffect: {
-    width: screenWidth * 0.045,
-    height: screenWidth * 0.01,
-    zIndex: 10,
-    position: 'absolute',
-    marginTop: screenWidth * 0.0229,
-    marginLeft: screenWidth * 0.695,
-    borderTopWidth: screenWidth * 0.004,
-    borderTopColor: 'black',
-    transform: [{ rotate: '45deg' }]
-  },
-  bottomLeftEffect: {
-    width: screenWidth * 0.045,
-    height: screenWidth * 0.01,
-    zIndex: 10,
-    position: 'absolute',
-    marginTop: screenWidth * 1.166,
-    marginLeft: screenWidth * 0.0095,
-    borderBottomWidth: screenWidth * 0.004,
-    borderBottomColor: 'black',
-    transform: [{ rotate: '45deg' }]
-  }
+    container: {
+        width: screenWidth * 0.75,
+        height: screenWidth * 1.2,
+    },
+    card: {
+        position: 'absolute',
+        width: screenWidth * 0.72,
+        height: screenWidth * 1.17,
+        borderWidth: screenWidth * 0.004,
+        borderColor: 'black',
+        zIndex: 100,
+        overflow: 'hidden',
+        borderRadius: screenWidth * 0.04,
+        top: 0,
+        left: 0,
+    },
+    cardShadow: {
+        position: 'absolute',
+        width: screenWidth * 0.72,
+        height: screenWidth * 1.17,
+        borderWidth: screenWidth * 0.004,
+        borderColor: 'black',
+        borderRadius: screenWidth * 0.04,
+        top: screenWidth * 0.03,
+        left: screenWidth * 0.03,
+    },
+    topRightEffect: {
+        width: screenWidth * 0.045,
+        height: screenWidth * 0.01,
+        zIndex: 10,
+        position: 'absolute',
+        marginTop: screenWidth * 0.0229,
+        marginLeft: screenWidth * 0.695,
+        borderTopWidth: screenWidth * 0.004,
+        borderTopColor: 'black',
+        transform: [{ rotate: '45deg' }]
+    },
+    bottomLeftEffect: {
+        width: screenWidth * 0.045,
+        height: screenWidth * 0.01,
+        zIndex: 10,
+        position: 'absolute',
+        marginTop: screenWidth * 1.166,
+        marginLeft: screenWidth * 0.0095,
+        borderBottomWidth: screenWidth * 0.004,
+        borderBottomColor: 'black',
+        transform: [{ rotate: '45deg' }]
+    }
 });
 
 export default CardTest;
